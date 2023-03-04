@@ -1,10 +1,9 @@
-import {Routes, Route} from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
+import App from "../App"
 
-export const AppRoutes = ()=>{
-
-    return(
-     <Routes>
-        
-     </Routes>
-    );
-}
+export const AppRoutes = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+    },
+])
