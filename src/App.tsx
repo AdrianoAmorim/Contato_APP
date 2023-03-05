@@ -1,9 +1,11 @@
-function App() {
+import { Button } from '@mui/material';
+
+const App = () => {
 
   return (
-    <div>
-      Novo projeto
-    </div>
+    <>
+    <Button variant='contained' color="primary">VALIDAR</Button>
+  </>
   )
 }
 
