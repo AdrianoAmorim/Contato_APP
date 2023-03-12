@@ -1,10 +1,13 @@
-import * as Form from "@radix-ui/react-form";
+
 import * as Toolbar from "@radix-ui/react-toolbar";
 import styled from "styled-components";
-import  {GearIcon,CheckCircledIcon,CrossCircledIcon,ThickArrowLeftIcon}  from "@radix-ui/react-icons"
+import { GearIcon, CheckCircledIcon, CrossCircledIcon, ThickArrowLeftIcon } from "@radix-ui/react-icons"
 
 
 export const ToolbarRoot = styled(Toolbar.Root)`
+    position: fixed;
+    z-index: 1;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-self: center;
