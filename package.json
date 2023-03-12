@@ -9,6 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-checkbox": "^1.0.3",
+    "@radix-ui/react-form": "^0.0.2",
+    "@radix-ui/react-icons": "^1.2.0",
+    "@radix-ui/react-scroll-area": "^1.0.3",
+    "@radix-ui/react-toolbar": "^1.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
