@@ -1,40 +1,53 @@
 
+import { MagnifyingGlassIcon, PersonIcon } from "@radix-ui/react-icons";
+import { useState, useEffect } from "react";
 import { Header } from "../../components/Header/"
 import * as S from "./styled"
 
 
 
+
 export const Home = () => {
+    const [nameContacts, setnameContacts] = useState(
+        [
+            { name: 'Adriano' },
+            { name: 'Cristiane Amorim' },
+            { name: 'Alice Sorio Amorim' },
+            { name: 'Papai' },
+            { name: 'Renato' },
+            { name: 'Alice Sorio Amorim' },
+            { name: 'Alice Sorio Amorim' },
+            { name: 'Alice Sorio Amorim' },
+            { name: 'Alice Sorio Amorim' },
+            { name: 'Alice Sorio Amorim' },
+        ]);
+
     return (
         <>
+       
             <Header />
 
             <S.Main>
-                <S.CardContacts>
-                    <S.NameContacts>
-                        Adriano Amorim
-                    </S.NameContacts>
-                </S.CardContacts>
-                <S.CardContacts>
-                    <S.NameContacts>
-                        Adriano Amorim
-                    </S.NameContacts>
-                </S.CardContacts>
-                <S.CardContacts>
-                    <S.NameContacts>
-                        Adriano Amorim
-                    </S.NameContacts>
-                </S.CardContacts>
-                <S.CardContacts>
-                    <S.NameContacts>
-                        Adriano Amorim
-                    </S.NameContacts>
-                </S.CardContacts>
-                <S.CardContacts>
-                    <S.NameContacts>
-                        Adriano Amorim
-                    </S.NameContacts>
-                </S.CardContacts>
+                <S.BoxInpSearch>
+                    <S.InpSearch type="search" placeholder="Buscar Contatos">
+
+                    </S.InpSearch>
+                    <MagnifyingGlassIcon id="iconSearch" color="var(--bg-header)" width={22} height={22}/>
+                </S.BoxInpSearch>
+
+
+                {
+                    nameContacts.map((contato, i) =>
+                        <S.CardContacts key={i}>
+                            <PersonIcon className="iconContact" color="var(--bg-header)" width={20} height={20}/>
+                            <S.NameContacts>
+                                {contato.name}
+                            </S.NameContacts>
+                        </S.CardContacts>
+
+                    )
+                }
+
             </S.Main>
         </>
     )

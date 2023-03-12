@@ -1,5 +1,5 @@
 import * as S from './styled'
-
+import { GearIcon, CheckCircledIcon, CrossCircledIcon, ThickArrowLeftIcon } from "@radix-ui/react-icons"
 export const Header = ()=>{
 
     return(
@@ -11,16 +11,16 @@ export const Header = ()=>{
             </S.TitleHeader>
             <S.BoxButtons>
                 <S.ToolbarButton>
-                    <S.VoltarIcon />
+                    <ThickArrowLeftIcon color='#fff' width={22} height={22} />
                 </S.ToolbarButton>
                 <S.ToolbarButton>
-                    <S.DeletarIcon />
+                    <CrossCircledIcon color='#fff' width={22} height={22}/>
                 </S.ToolbarButton>
                 <S.ToolbarButton>
-                    <S.SaveIcon />
+                    <CheckCircledIcon color='#fff' width={22} height={22}/>
                 </S.ToolbarButton>
                 <S.ToolbarButton>
-                    <S.ConfigIcon />
+                    <GearIcon color='#fff' width={22} height={22}/>
                 </S.ToolbarButton>
             </S.BoxButtons>
         </header>
