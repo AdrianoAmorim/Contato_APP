@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 export const Main = styled.main`
     position: relative;
-    top: 1rem;
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 4rem;
     width: 100vw;
     padding: 5px 5px;
     
@@ -42,6 +42,7 @@ export const BoxInpSearch = styled.div`
     align-items: center;
     width: 85vw;
     max-width: 40rem;
+    margin: 1rem 0;
     & #iconSearch{
       margin-inline-start: -2rem;
     }
@@ -57,8 +58,20 @@ export const InpSearch = styled.input`
   font-weight: 500;
   border-radius: 10px;
   -webkit-appearance: none;
+  color: var(--text-primary);
   &::-webkit-search-cancel-button{
     display: none;
   }
 
 `
+
+export const BtnCadastrar = styled.button`
+  position: fixed;
+  bottom: 1.3rem;
+  right: 2rem;
+  padding: 1rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--bg-button);
+  cursor: pointer;
+`;

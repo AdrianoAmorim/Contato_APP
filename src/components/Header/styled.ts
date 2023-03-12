@@ -19,6 +19,7 @@ export const TitleHeader = styled.h5`
     color: var(--text-title);
     font-size: 1.3rem;
     width: 100%;
+line-height: 3rem;
 `;
 
 export const BoxButtons = styled.div`
