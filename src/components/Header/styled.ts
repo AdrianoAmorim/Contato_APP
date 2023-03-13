@@ -6,20 +6,21 @@ export const ToolbarRoot = styled(Toolbar.Root)`
     position: fixed;
     z-index: 1;
     top: 0;
+    left:0;
     display: flex;
     justify-content: space-between;
-    align-self: center;
-    padding: 10px;
+    align-items:center;
+    padding: 10px 15px;
     background-color: var(--bg-header);
     width: 100%;
     height: 70px;
     box-shadow: 1px 1px 6px 2px #c0c0c0;
+    border-radius: 0 0 18px 18px;
 `
 export const TitleHeader = styled.h5`
     color: var(--text-title);
     font-size: 1.3rem;
     width: 100%;
-line-height: 3rem;
 `;
 
 export const BoxButtons = styled.div`
@@ -28,11 +29,3 @@ export const BoxButtons = styled.div`
     align-items: center;
     gap: 20px;
 `
-export const ToolbarButton = styled(Toolbar.Button)`
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--bg-button);
-    cursor: pointer;
-    width: 40px;
-`;

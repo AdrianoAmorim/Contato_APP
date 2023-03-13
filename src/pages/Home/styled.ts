@@ -3,28 +3,40 @@ import styled from "styled-components";
 
 export const Main = styled.main`
     position: relative;
-    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 4rem;
-    width: 100vw;
+    width: 100%;
     padding: 5px 5px;
-    
+   
 `;
+export const BoxCardContacts = styled.div`
+    position:relative;
+    margin-top: 4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+
+
+`
 export const CardContacts = styled.div`
     display: flex;
     align-items: center;
     justify-content: start;
     background-color: var(--bg-card-contact);
-    width: 90vw;
+    width: 90%;
     height: 3.2rem;
     max-width: 80rem;
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
     margin-top: 10px;
-    padding-inline-start: 1rem;
-    box-shadow: 2px 5px 10px 1px #bbbbbb;
+    box-shadow: 2px 5px 10px 1px #cfcfcfbb;
+   
+    &:nth-of-type(1){
+      margin-top: 0;
+    }
     & .iconContact{
       margin-right: .4rem;
     }
@@ -32,25 +44,31 @@ export const CardContacts = styled.div`
 `
 
 export const NameContacts = styled.span`
+
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
+   
 `
 export const BoxInpSearch = styled.div`
+    position: fixed;
+    z-index:1;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 85vw;
-    max-width: 40rem;
+    width: 100%;
     margin: 1rem 0;
+    padding: 0 .3rem;
     & #iconSearch{
-      margin-inline-start: -2rem;
+      margin: 0;
+      margin-left: -2rem;
     }
 `;
 
 export const InpSearch = styled.input`
   height: 40px;
   width: 100%;
+  max-width: 40rem;
   border: none;
   outline: none;
   padding-inline-start: 20px;
