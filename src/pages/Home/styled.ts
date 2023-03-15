@@ -13,7 +13,7 @@ export const Main = styled.main`
 `;
 export const BoxCardContacts = styled.div`
     position:relative;
-    margin-top: 4rem;
+    margin-top: 5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -57,8 +57,8 @@ export const BoxInpSearch = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 1rem 0;
-    padding: 0 .3rem;
+    padding: 20px 0;
+    backdrop-filter: blur(1px);
     & #iconSearch{
       margin: 0;
       margin-left: -2rem;

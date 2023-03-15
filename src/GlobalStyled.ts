@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     --background: #ebf5f4;
     --bg-header: #17c179;
     --bg-button: #ff9b37;
+    --bg-danger: #ff2828;
     --text-button:#fcfcfc;
     --bg-card-contact:#fcfcfca9;
     --text-title: #fff;

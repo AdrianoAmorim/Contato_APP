@@ -1,17 +1,12 @@
-import * as S from './styled'
-import { GearIcon, CheckCircledIcon, CrossCircledIcon, ThickArrowLeftIcon } from "@radix-ui/react-icons"
-import { useState } from 'react'
+import {useContext } from 'react';
+import * as S from './styled';
+import { GearIcon, CheckCircledIcon, CrossCircledIcon, ThickArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button } from './Button';
+import { ButtonHeaderContext } from '../../contexts/ButtonHeaderContext'; 
 
-interface HeaderProps {
-    btnConfig?: boolean;
-    btnSave?: boolean;
-    btnCancel?: boolean;
-    btnBack?: boolean;
-}
 
-export const Header = (props : HeaderProps) => {
-    
+export const Header = () => {
+    const {buttonsState} = useContext(ButtonHeaderContext);
     return (
 
         <S.ToolbarRoot asChild>
@@ -22,16 +17,16 @@ export const Header = (props : HeaderProps) => {
 
                 <S.BoxButtons>
 
-                    <Button show={props.btnBack}>
+                    <Button show={buttonsState.btnBack}>
                         <ThickArrowLeftIcon color='#fff' width={22} height={22} />
                     </Button>
-                    <Button show={props.btnCancel}>
+                    <Button show={buttonsState.btnDelete} bgColor="--bg-danger">
                         <CrossCircledIcon color='#fff' width={22} height={22} />
                     </Button>
-                    <Button show={props.btnSave}>
+                    <Button show={buttonsState.btnSave}>
                         <CheckCircledIcon color='#fff' width={22} height={22} />
                     </Button>
-                    <Button show={props.btnConfig}>
+                    <Button show={buttonsState.btnConfig}>
                         <GearIcon color='#fff' width={22} height={22} />
                     </Button>
 
