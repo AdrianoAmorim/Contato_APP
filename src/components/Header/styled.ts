@@ -1,8 +1,8 @@
 
-import * as Toolbar from "@radix-ui/react-toolbar";
+
 import styled from "styled-components";
 
-export const ToolbarRoot = styled(Toolbar.Root)`
+export const Header = styled.header`
     position: fixed;
     z-index: 1;
     top: 0;

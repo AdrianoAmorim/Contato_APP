@@ -2,16 +2,18 @@
 import { MagnifyingGlassIcon, PersonIcon, PlusIcon } from "@radix-ui/react-icons";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ButtonHeaderContext } from "../../contexts/ButtonHeaderContext";
+import { Main } from "../../components/MainComponent";
+import { HeaderContext } from "../../contexts/HeaderContext";
 import * as S from "./styled";
 
 export const Home = () => {
-    const { setButtonsState } = useContext(ButtonHeaderContext);
+    const { setHeaderState } = useContext(HeaderContext);
     const configButtons = {
         btnConfig: true,
         btnSave: false,
         btnDelete: false,
-        btnBack: false
+        btnBack: false,
+        title:"Contatos"
     };
     
     const [nameContacts, setnameContacts] = useState(
@@ -29,11 +31,11 @@ export const Home = () => {
         ]);
 
     useEffect(() => {
-        setButtonsState(configButtons);
+        setHeaderState(configButtons);
     }, [])
 
     return (
-        <S.Main>
+        <Main>
             <S.BoxInpSearch>
                 <S.InpSearch type="search" placeholder="Buscar Contatos" />
                 <MagnifyingGlassIcon id="iconSearch" color="var(--bg-header)" width={22} height={22} />
@@ -58,6 +60,6 @@ export const Home = () => {
                     <PlusIcon width={20} height={20} color="#FFF" />
                 </S.BtnCadastrar>
             </Link>
-        </S.Main>
+        </Main>
     )
 }

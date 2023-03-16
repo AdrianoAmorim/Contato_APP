@@ -1,10 +1,9 @@
-import * as Toolbar from "@radix-ui/react-toolbar";
 import styled from "styled-components";
 
 type ButtonProps = {
     bgcolor?:string
 }
-export const ToolbarButton = styled(Toolbar.Button)<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
     padding: 5px;
     border: none;
     border-radius: 5px;

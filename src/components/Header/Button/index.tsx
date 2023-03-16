@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ToolbarButton } from "./styled"
+import * as S from "./styled"
 
 interface ButtonProps {
     children: ReactNode;
@@ -12,9 +12,9 @@ export const Button = ({ children, show,bgcolor }: ButtonProps) => {
     return (
         <>
             {show &&
-                <ToolbarButton bgcolor={bgcolor}>
+                <S.Button bgcolor={bgcolor}>
                     {children}
-                </ToolbarButton>
+                </S.Button>
             }
         </>
 

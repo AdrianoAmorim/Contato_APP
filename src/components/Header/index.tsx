@@ -2,39 +2,40 @@ import { useContext } from 'react';
 import * as S from './styled';
 import { GearIcon, CheckCircledIcon, CrossCircledIcon, ThickArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button } from './Button';
-import { ButtonHeaderContext } from '../../contexts/ButtonHeaderContext';
+import {  HeaderContext } from '../../contexts/HeaderContext';
 import { Link } from 'react-router-dom';
 
 
 export const Header = () => {
-    const { buttonsState } = useContext(ButtonHeaderContext);
+    const { headerState } = useContext(HeaderContext);
+
     return (
 
-        <S.ToolbarRoot asChild>
-            <header>
+        <S.Header>
+            
                 <S.TitleHeader>
-                    MEUS CONTATOS
+                   {headerState.title}
                 </S.TitleHeader>
 
                 <S.BoxButtons>
 
                     <Link to={`/`}>
-                        <Button show={buttonsState.btnBack}>
+                        <Button show={headerState.btnBack}>
                             <ThickArrowLeftIcon color='#fff' width={22} height={22} />
                         </Button>
                     </Link>
-                    <Button show={buttonsState.btnDelete} bgcolor="--bg-danger">
+                    <Button show={headerState.btnDelete} bgcolor="--bg-danger">
                         <CrossCircledIcon color='#fff' width={22} height={22} />
                     </Button>
-                    <Button show={buttonsState.btnSave}>
+                    <Button show={headerState.btnSave}>
                         <CheckCircledIcon color='#fff' width={22} height={22} />
                     </Button>
-                    <Button show={buttonsState.btnConfig}>
+                    <Button show={headerState.btnConfig}>
                         <GearIcon color='#fff' width={22} height={22} />
                     </Button>
 
                 </S.BoxButtons>
-            </header>
-        </S.ToolbarRoot>
+           
+        </S.Header>
     )
 }
