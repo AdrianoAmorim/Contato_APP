@@ -56,26 +56,27 @@ export const BoxInpSearch = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.1rem 0;
     width: 100%;
-    padding: 20px 0;
     backdrop-filter: blur(1px);
     & #iconSearch{
-      margin: 0;
+      z-index: 1;
       margin-left: -2rem;
     }
 `;
 
 export const InpSearch = styled.input`
-  height: 40px;
+  position: relative;
+  height: 45px;
   width: 100%;
-  max-width: 40rem;
-  border: none;
+  max-width: 18rem;
+  border: 1px solid var(--border-input);
   outline: none;
   padding-inline-start: 20px;
+  margin-left: -.9rem;
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: 10px;
-  -webkit-appearance: none;
   color: var(--text-primary);
   &::-webkit-search-cancel-button{
     display: none;

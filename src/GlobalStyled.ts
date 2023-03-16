@@ -10,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
     --bg-card-contact:#fcfcfca9;
     --text-title: #fff;
     --text-primary: #282828;
+    --border-input:#408080;
 }
 
 
@@ -23,5 +24,7 @@ body{
     padding: 0;
     box-sizing: border-box;
 }
-
+.teste{
+    margin-top: 150px;
+}
 `

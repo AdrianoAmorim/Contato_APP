@@ -4,15 +4,15 @@ import { ToolbarButton } from "./styled"
 interface ButtonProps {
     children: ReactNode;
     show?: boolean;
-    bgColor?:string;
+    bgcolor?:string;
 }
 
-export const Button = ({ children, show,bgColor }: ButtonProps) => {
+export const Button = ({ children, show,bgcolor }: ButtonProps) => {
 
     return (
         <>
             {show &&
-                <ToolbarButton bgColor={bgColor}>
+                <ToolbarButton bgcolor={bgcolor}>
                     {children}
                 </ToolbarButton>
             }

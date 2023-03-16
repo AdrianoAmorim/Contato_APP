@@ -1,17 +1,19 @@
 
 import { MagnifyingGlassIcon, PersonIcon, PlusIcon } from "@radix-ui/react-icons";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ButtonHeaderContext } from "../../contexts/ButtonHeaderContext";
 import * as S from "./styled";
 
 export const Home = () => {
+    const { setButtonsState } = useContext(ButtonHeaderContext);
     const configButtons = {
         btnConfig: true,
-        btnSave: true,
+        btnSave: false,
         btnDelete: false,
         btnBack: false
-    }
-    const { setButtonsState } = useContext(ButtonHeaderContext)
+    };
+    
     const [nameContacts, setnameContacts] = useState(
         [
             { name: 'Adriano' },
@@ -30,16 +32,6 @@ export const Home = () => {
         setButtonsState(configButtons);
     }, [])
 
-    const teste = ()=>{
-        const configButtons2 = {
-            btnConfig: true,
-            btnSave: true,
-            btnDelete: true,
-            btnBack: true
-        }
-        setButtonsState(configButtons2)
-    }
-
     return (
         <S.Main>
             <S.BoxInpSearch>
@@ -48,7 +40,6 @@ export const Home = () => {
             </S.BoxInpSearch>
 
             <S.BoxCardContacts>
-
                 {
                     nameContacts.map((contato, i) =>
                         <S.CardContacts key={i}>
@@ -61,9 +52,12 @@ export const Home = () => {
                     )
                 }
             </S.BoxCardContacts>
-            <S.BtnCadastrar onClick={teste}>
-                <PlusIcon width={20} height={20} color="#FFF" />
-            </S.BtnCadastrar>
+
+            <Link to={`/cadastrar`}>
+                <S.BtnCadastrar>
+                    <PlusIcon width={20} height={20} color="#FFF" />
+                </S.BtnCadastrar>
+            </Link>
         </S.Main>
     )
 }
