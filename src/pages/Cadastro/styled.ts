@@ -13,10 +13,21 @@ export const FormCad = styled.form`
     align-items: center;
     width: 100%;
     max-width: 45rem;
-    margin-top: 1rem;
     border-radius: 10px;
-    padding: 2rem;
+    padding: 4rem 2rem 2rem 2rem;
     
+`
+export const BoxAvatar = styled.div`
+    display: flex;
+    width: 100%;
+    max-width: 8rem;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-bottom: -1.8rem;
+    & img{
+        width: 100%;
+    }
 `
 export const BoxInpCad = styled.div`
     display: flex;
@@ -36,7 +47,7 @@ export const InpCad = styled.input<CadastroProps>`
   max-width: ${props => props.width ? props.width : "28rem"};
   border: 1px solid var(--border-input);
   outline: none;
-  padding-inline-start: 20px;
+  padding-inline-start: 15px;
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: 10px;
@@ -55,11 +66,10 @@ height:${props => props.height ? props.height : "45px"};
   color: var(--text-primary);
 `
 export const ButtonAddTel = styled.button`
-    background-color: var(--bg-button);
+    background: none;
     border: none;
+    z-index:1;
     border-radius: 10px;
-    padding: 3px 2px 1px 2px;
-    margin-right: -10px;
     cursor: pointer;
-
+   margin-left: -3rem;
 `

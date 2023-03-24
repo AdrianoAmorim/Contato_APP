@@ -3,11 +3,14 @@ import App from './src/App'
 import { GlobalStyles } from './src/GlobalStyled'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './src/routes'
-import { ContextProvider } from './src/contexts/HeaderContext'
+import { HeaderProvider } from './src/contexts/HeaderContext'
+import { ContactProvider } from './src/contexts/ContactContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <ContextProvider>
-        <GlobalStyles />
-        <RouterProvider router={router} />
-    </ContextProvider>
+    <ContactProvider>
+        <HeaderProvider>
+            <GlobalStyles />
+            <RouterProvider router={router} />
+        </HeaderProvider>
+    </ContactProvider>
 )

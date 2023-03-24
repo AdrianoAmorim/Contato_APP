@@ -8,7 +8,7 @@ import * as S from "./styled";
 
 export const Home = () => {
     const { setHeaderState } = useContext(HeaderContext);
-    const configButtons = {
+    const configHeader = {
         btnConfig: true,
         btnSave: false,
         btnDelete: false,
@@ -31,7 +31,7 @@ export const Home = () => {
         ]);
 
     useEffect(() => {
-        setHeaderState(configButtons);
+        setHeaderState(configHeader);
     }, [])
 
     return (

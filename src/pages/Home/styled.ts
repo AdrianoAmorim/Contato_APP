@@ -45,18 +45,17 @@ export const BoxInpSearch = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 0;
+    padding: 1rem;
     width: 100%;
     backdrop-filter: blur(1px);
     & #iconSearch{
       z-index: 1;
-      margin-left: -2rem;
+     margin-inline-start: -1.7rem;
       cursor:pointer;
     }
 `;
 
 export const InpSearch = styled.input`
-  position: relative;
   height: 45px;
   width: 100%;
   max-width: 28rem;
@@ -64,7 +63,6 @@ export const InpSearch = styled.input`
   box-shadow: 2px 5px 10px 1px #cfcfcfbb;
   outline: none;
   padding-inline-start: 20px;
-  margin-left: -.9rem;
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: 10px;

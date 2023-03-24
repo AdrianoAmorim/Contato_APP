@@ -8,5 +8,5 @@ export const Main = styled.div`
     align-items: center;
     margin-top: 4rem;
     width: 100%;
-    padding: 5px 5px;
+    padding: .9rem;
 `

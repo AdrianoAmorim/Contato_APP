@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 //CRIACAO DA PROPS PARA RECEBER OS COMPONENTES FILHOS
 type ContextProps = {
@@ -35,7 +35,7 @@ const initialValue = {
 export const HeaderContext = createContext<HeaderContextData>(initialValue);
 
 //AQUI CRIAMOS O COMPONENT PROVEDOR DOS DADOS PARA OS FILHOS Q IRAO ACESSAR
-export const ContextProvider = ({ children }: ContextProps) => {
+export const HeaderProvider = ({ children }: ContextProps) => {
     const [headerState, setHeaderState] = useState<HeaderType>(initialValue.headerState);
 
 
