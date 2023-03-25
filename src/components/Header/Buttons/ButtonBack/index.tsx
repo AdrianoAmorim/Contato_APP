@@ -1,5 +1,5 @@
 import { ReactNode, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ContactContext } from "../../../../contexts/ContactContext";
 import * as S from "./styled"
 
@@ -10,12 +10,18 @@ interface ButtonProps {
 }
 
 export const ButtonBack = ({ children, show, bgcolor }: ButtonProps) => {
+    const {resetData} = useContext(ContactContext);
     const navigate = useNavigate();
+
+    const resetDataContact = ()=>{
+        resetData();
+        navigate('/')
+    }
 
     return (
         <>
             {show &&
-                <S.Button bgcolor={bgcolor} onClick={()=> navigate('/')}>
+                <S.Button bgcolor={bgcolor} onClick={resetDataContact}>
                     {children}
                 </S.Button>
             }

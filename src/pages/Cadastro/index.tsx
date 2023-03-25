@@ -22,6 +22,7 @@ export const Cadastro = () => {
     //Seta na primeira montagem do component os botoes do header 
     useEffect(() => {
         setHeaderState(configHeader);
+
     }, [])
 
 
@@ -39,9 +40,9 @@ export const Cadastro = () => {
 
             <S.FormCad onSubmit={handleSubmit}>
                 <S.BoxInpCad>
-                    <S.InpCad type="text" name="nome" placeholder="Nome" onChange={
+                    <S.InpCad type="text" value={dataContact.nome} name="nome" placeholder="Nome" onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) => setNome(e.target.value)} />
-                    <S.InpCad type="text" name="sobrenome" placeholder="Sobrenome" onChange={
+                    <S.InpCad type="text" value={dataContact.sobrenome} name="sobrenome" placeholder="Sobrenome" onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) => setSobreNome(e.target.value)} />
 
                 </S.BoxInpCad>
