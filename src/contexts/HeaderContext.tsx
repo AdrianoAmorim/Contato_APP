@@ -8,6 +8,7 @@ type ContextProps = {
 type HeaderType = {
     btnConfig: boolean,
     btnSave: boolean,
+    btnEditar: boolean,
     btnDelete: boolean,
     btnBack: boolean,
     title: string
@@ -23,6 +24,7 @@ const initialValue = {
     headerState: {
         btnConfig: false,
         btnSave: false,
+        btnEditar: false,
         btnDelete: false,
         btnBack: false,
         title:"Contatos"

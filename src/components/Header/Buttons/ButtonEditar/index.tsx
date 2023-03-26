@@ -8,23 +8,12 @@ interface ButtonProps {
     bgcolor?: string;
 }
 
-export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
-    const {dataContact} = useContext(ContactContext);
-
-    const cadContact = () => {
-        if(dataContact){
-            console.log(dataContact)
-        }else{
-            console.log("vazio")
-        }
-    }
-
-
-
+export const ButtonEditar = ({ children, show, bgcolor }: ButtonProps) => {
+   
     return (
         <>
             {show &&
-                <S.Button bgcolor={bgcolor} onClick={cadContact}>
+                <S.Button bgcolor={bgcolor}>
                     {children}
                 </S.Button>
             }

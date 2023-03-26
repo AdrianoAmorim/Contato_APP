@@ -22,6 +22,7 @@ export const CardContacts = styled.div`
     padding: 5px 5px 5px 10px;
     margin-top: 10px;
     box-shadow: 2px 5px 10px 1px #cfcfcfbb;
+    cursor: pointer;
    
     &:nth-of-type(1){
       margin-top: 0;

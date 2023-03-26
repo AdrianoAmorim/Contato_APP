@@ -9,20 +9,14 @@ import { ContactContext } from "../../contexts/ContactContext";
 
 export const Cadastro = () => {
     const { setHeaderState } = useContext(HeaderContext);
-    const { setNome,setSobreNome,setEmail,setTel,setSite,setCategoria,setId,dataContact} = useContext(ContactContext);
- 
+    const { setNome,setSobreNome,setEmail,setTel,setSite,setCategoria,dataContact} = useContext(ContactContext);
    
     const configHeader = {
-        btnConfig: false, btnSave: true, btnDelete: false, btnBack: true, title: "Novo Contato"
+        btnConfig: false, btnSave: true, btnDelete: false, btnBack: true,btnEditar:false, title: "Novo Contato"
     };
-
-    const teste =()=>{
-        console.log(dataContact)
-    }
     //Seta na primeira montagem do component os botoes do header 
     useEffect(() => {
         setHeaderState(configHeader);
-
     }, [])
 
 
@@ -59,7 +53,7 @@ export const Cadastro = () => {
                     <S.BoxInpCad >
                         <S.InpCad type="tel" name="tel" placeholder="Telefone" onChange={
                             (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value)} />
-                        <S.ButtonAddTel onClick={teste}>
+                        <S.ButtonAddTel>
                             <PlusIcon height={20} width={20} color="var(--bg-button)" />
                         </S.ButtonAddTel>
                     </S.BoxInpCad>
