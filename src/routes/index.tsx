@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/editar/:id",
+        element: <Cadastro />
+      },
+      {
+        path: "/visualizar/:id",
           element: <Visualizar />
       }
     ]

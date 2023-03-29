@@ -9,7 +9,7 @@ import { ContactType } from "../../types/ContactType";
 import * as S from "./styled";
 
 export const Home = () => {
-    const { setHeaderState } = useContext(HeaderContext);
+    const { setHeaderState,setTitleState } = useContext(HeaderContext);
     const [dataContacts, setDataContacts] = useState<ContactType[]>(getContacts());
     const navigate = useNavigate();
 
@@ -20,17 +20,17 @@ export const Home = () => {
         btnDelete: false,
         btnBack: false,
         btnEditar:false,
-        title: "Contatos"
     };
 
     //CHAMA A TELA DE VISUALIZACAO DO CONTATO PASSANDO O ID DO CONTATO SELECIONADO PELO PARAMETRO uRL
     const viewContact = (id:number) => {
-        navigate(`/editar/${id}`);
+        navigate(`/visualizar/${id}`);
     }
 
     //SETA A CONFIGURACOES DOS BOTOES NO CONTEXT DO HEADER    
     useEffect(() => {
         setHeaderState(configHeader);
+        setTitleState({title:"CONTATOS"});
     }, [])
 
     return (

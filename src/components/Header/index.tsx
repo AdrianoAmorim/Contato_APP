@@ -11,14 +11,14 @@ import { ButtonEditar } from './Buttons/ButtonEditar';
 
 
 export const Header = () => {
-    const { headerState } = useContext(HeaderContext);
+    const { headerState,titleState } = useContext(HeaderContext);
 
     return (
 
         <S.Header>
             
                 <S.TitleHeader>
-                   {headerState.title}
+                   {titleState.title}
                 </S.TitleHeader>
 
                 <S.BoxButtons>

@@ -4,6 +4,9 @@ import { createContext, ReactNode, useState } from "react";
 type ContextProps = {
     children: ReactNode
 }
+type TitleType = {
+    title: string
+}
 //O TYPE PARA OS Buttons DO HEADER
 type HeaderType = {
     btnConfig: boolean,
@@ -11,13 +14,14 @@ type HeaderType = {
     btnEditar: boolean,
     btnDelete: boolean,
     btnBack: boolean,
-    title: string
 }
 
 //Crio o Context de dados do meu STATE 
 interface HeaderContextData {
     headerState: HeaderType;
-    setHeaderState: (value: HeaderType) => void
+    titleState:TitleType;
+    setHeaderState: (value: HeaderType) => void;
+    setTitleState: (value:TitleType)=> void;
 }
 //VALORES INICIAIS DO MEU STATE
 const initialValue = {
@@ -27,10 +31,12 @@ const initialValue = {
         btnEditar: false,
         btnDelete: false,
         btnBack: false,
-        title:"Contatos"
     },
-    setHeaderState: () => { }
-
+    titleState: {
+        title:""
+    },
+    setTitleState:()=>{},
+    setHeaderState: () => {}
 }
 
 //AQUI CRIAMOS O CONTEXTO  EM SIM PASSANDO OS VALORES INICIAIS Q QUEREMOS DISPONIBILIZAR ( E TIPAMOS O CONTEXT COM O TYPE CRIADO)
@@ -39,10 +45,10 @@ export const HeaderContext = createContext<HeaderContextData>(initialValue);
 //AQUI CRIAMOS O COMPONENT PROVEDOR DOS DADOS PARA OS FILHOS Q IRAO ACESSAR
 export const HeaderProvider = ({ children }: ContextProps) => {
     const [headerState, setHeaderState] = useState<HeaderType>(initialValue.headerState);
-
+    const [titleState,setTitleState] = useState<TitleType>(initialValue.titleState)
 
     return (
-        <HeaderContext.Provider value={{ headerState, setHeaderState }}>
+        <HeaderContext.Provider value={{ headerState, setHeaderState,titleState,setTitleState}}>
             {children}
         </HeaderContext.Provider>
     );

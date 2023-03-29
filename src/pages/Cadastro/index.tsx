@@ -1,6 +1,6 @@
 import { PlusIcon } from "@radix-ui/react-icons";
 import avatar from "../../assets/img/avatarCad.png"
-import { FormEvent, useContext, useEffect} from "react";
+import { FormEvent, useContext, useEffect } from "react";
 import { Main } from "../../components/MainComponent";
 import * as S from './styled';
 import { HeaderContext } from "../../contexts/HeaderContext";
@@ -8,15 +8,20 @@ import { ContactContext } from "../../contexts/ContactContext";
 
 
 export const Cadastro = () => {
-    const { setHeaderState } = useContext(HeaderContext);
-    const { setNome,setSobreNome,setEmail,setTel,setSite,setCategoria,dataContact} = useContext(ContactContext);
-   
+    const { setHeaderState, setTitleState } = useContext(HeaderContext);
+    const { setNome, setSobreNome, setEmail, setTel, setSite, setCategoria, dataContact } = useContext(ContactContext);
+
     const configHeader = {
-        btnConfig: false, btnSave: true, btnDelete: false, btnBack: true,btnEditar:false, title: "Novo Contato"
+        btnConfig: false, btnSave: true, btnDelete: false, btnBack: true, btnEditar: false
     };
     //Seta na primeira montagem do component os botoes do header 
     useEffect(() => {
         setHeaderState(configHeader);
+        if (dataContact.id) {
+            setTitleState({ title: "EDITAR" })
+        } else {
+            setTitleState({ title: "NOVO CONTATO" })
+        }
     }, [])
 
 
@@ -42,25 +47,25 @@ export const Cadastro = () => {
                 </S.BoxInpCad>
 
                 <S.BoxInpCad>
-                    <S.InpCad type="text" name="site" placeholder="Site" onChange={
+                    <S.InpCad type="text" value={dataContact.site} name="site" placeholder="Site" onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) => setSite(e.target.value)} />
-                    <S.InpCad type="email" name="email" placeholder="E-mail" onChange={
+                    <S.InpCad type="email" value={dataContact.email} name="email" placeholder="E-mail" onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
                 </S.BoxInpCad>
 
                 <S.BoxInpCad>
 
                     <S.BoxInpCad >
-                        <S.InpCad type="tel" name="tel" placeholder="Telefone" onChange={
+                        <S.InpCad type="tel" name="tel" value={dataContact.tel} placeholder="Telefone" onChange={
                             (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value)} />
                         <S.ButtonAddTel>
                             <PlusIcon height={20} width={20} color="var(--bg-button)" />
                         </S.ButtonAddTel>
                     </S.BoxInpCad>
-                    <S.SlcCad name="categoria" onChange={
+                    <S.SlcCad name="categoria" value={dataContact.categoria} onChange={
                         (e: React.ChangeEvent<HTMLSelectElement>) => setCategoria(parseInt(e.target.value))
                     }>
-                        <option value="1" defaultChecked>Futebol</option>
+                        <option value="1">Futebol</option>
                         <option value="2" >Trabalho</option>
                         <option value="3">Família</option>
                     </S.SlcCad>

@@ -11,7 +11,7 @@ import * as S from "./styled";
 export const Visualizar = () => {
     const { id } = useParams();
     const [contact, setContact] = useState<ContactType>({} as ContactType);
-    const { setHeaderState } = useContext(HeaderContext);
+    const { setHeaderState,setTitleState } = useContext(HeaderContext);
     const { setId, setNome, setSobreNome, setTel, setSite, setEmail, setCategoria,dataContact } = useContext(ContactContext);
     const configHeader = {
         btnConfig: false, btnSave: false, btnDelete: true, btnBack: true, btnEditar: true, title: "Visualizar"
@@ -20,6 +20,8 @@ export const Visualizar = () => {
     //INSERE na primeira montagem do component os botoes do header e o contato selecionado da tela Home
     useEffect(() => {
         setHeaderState(configHeader);
+        
+        setTitleState({title:"VIZUALIZAR"})
         if(id){
             getContactSelected(id);
         }
