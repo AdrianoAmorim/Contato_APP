@@ -23,7 +23,7 @@ export const Home = () => {
         title: "Contatos"
     };
 
-    //FAZ UM GET PARA PEGAR A LISTA COM TODOS OS CONTATOS CADASTRADOS
+    //CHAMA A TELA DE VISUALIZACAO DO CONTATO PASSANDO O ID DO CONTATO SELECIONADO PELO PARAMETRO uRL
     const viewContact = (id:number) => {
         navigate(`/editar/${id}`);
     }
@@ -42,12 +42,12 @@ export const Home = () => {
 
             <S.BoxCardContacts>
                 {
-                    dataContacts.map((contato, i) =>
+                    dataContacts.map((contact, i) =>
                     
-                        <S.CardContacts key={i} onClick={()=> viewContact(contato.id?contato.id:0)}>
+                        <S.CardContacts key={i} onClick={()=> viewContact(contact.id)}>
                             <PersonIcon className="iconContact" color="var(--bg-header)" width={20} height={20} />
                             <S.NameContacts>
-                                {contato.nome}
+                                {contact.nome}
                             </S.NameContacts>
                         </S.CardContacts>
 

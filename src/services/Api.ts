@@ -104,7 +104,7 @@ export const getContacts = () => {
 export const getContact = (id: number) => {
     const contact: ContactType = contacts.find((item) => {
         if (item.id === id) {
-        return item;
+            return item;
         }
     })!;
 

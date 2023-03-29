@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Main } from "../../components/MainComponent";
+import { ContactContext } from "../../contexts/ContactContext";
 import { HeaderContext } from "../../contexts/HeaderContext";
 import { getContact } from "../../services/Api";
 import { ContactType } from "../../types/ContactType";
@@ -11,17 +12,37 @@ export const Visualizar = () => {
     const { id } = useParams();
     const [contact, setContact] = useState<ContactType>({} as ContactType);
     const { setHeaderState } = useContext(HeaderContext);
+    const { setId, setNome, setSobreNome, setTel, setSite, setEmail, setCategoria,dataContact } = useContext(ContactContext);
     const configHeader = {
         btnConfig: false, btnSave: false, btnDelete: true, btnBack: true, btnEditar: true, title: "Visualizar"
     };
 
-    //Seta na primeira montagem do component os botoes do header 
+    //Seta na primeira montagem do component os botoes do header e o contato selecionado da tela Home
     useEffect(() => {
         setHeaderState(configHeader);
-        if (id) {
-            setContact(getContact(parseInt(id)));
+        if(id){
+            getContactSelected(id);
         }
     }, []);
+
+    useEffect(() => {
+        setId(contact.id);
+        setNome(contact.nome);
+        setSobreNome(contact.sobrenome);
+        setTel(contact.tel);
+        setEmail(contact.email);
+        setSite(contact.site);
+        setCategoria(contact.categoria);
+        
+        console.log(dataContact)
+    }, [contact.categoria]);
+
+    const getContactSelected =  (id: string) => {
+        const cont =  getContact(parseInt(id))
+        console.log(cont)
+        setContact(cont); 
+        
+    }
 
     return (
         <Main>
