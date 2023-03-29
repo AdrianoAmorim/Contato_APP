@@ -12,11 +12,8 @@ export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
     const contact = useContext(ContactContext);
 
     const cadContact = () => {
-        if(contact.dataContact){
-            console.log(contact.dataContact)
-        }else{
-            console.log("vazio")
-        }
+      console.log(contact.dataContact.id);
+      console.log(contact.dataContact.nome);
     }
 
 

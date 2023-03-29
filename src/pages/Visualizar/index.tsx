@@ -17,7 +17,7 @@ export const Visualizar = () => {
         btnConfig: false, btnSave: false, btnDelete: true, btnBack: true, btnEditar: true, title: "Visualizar"
     };
 
-    //Seta na primeira montagem do component os botoes do header e o contato selecionado da tela Home
+    //INSERE na primeira montagem do component os botoes do header e o contato selecionado da tela Home
     useEffect(() => {
         setHeaderState(configHeader);
         if(id){
@@ -25,7 +25,10 @@ export const Visualizar = () => {
         }
     }, []);
 
-    useEffect(() => {
+    //PEGA AS INFORMACOES DO CONTATO SELECIONADO E SETA NA STATE LOCAL E NO CONTEXT
+    const getContactSelected =  (id: string) => {
+        const contact:ContactType =  getContact(parseInt(id));
+        setContact(contact);
         setId(contact.id);
         setNome(contact.nome);
         setSobreNome(contact.sobrenome);
@@ -33,15 +36,6 @@ export const Visualizar = () => {
         setEmail(contact.email);
         setSite(contact.site);
         setCategoria(contact.categoria);
-        
-        console.log(dataContact)
-    }, [contact.categoria]);
-
-    const getContactSelected =  (id: string) => {
-        const cont =  getContact(parseInt(id))
-        console.log(cont)
-        setContact(cont); 
-        
     }
 
     return (
