@@ -1,17 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
+import { ContactType } from "../types/ContactType";
 
 type ContactContextProps = {
     children: ReactNode
-}
-
-type ContactType = {
-    id?: number,
-    nome: string,
-    sobrenome: string,
-    email: string,
-    site: string,
-    tel: string,
-    categoria: number
 }
 
 interface ContactContextData {
