@@ -1,15 +1,14 @@
-import { PlusIcon } from "@radix-ui/react-icons";
 import avatar from "../../assets/img/avatarCad.png"
 import { FormEvent, useContext, useEffect } from "react";
 import { Main } from "../../components/MainComponent";
 import * as S from './styled';
 import { HeaderContext } from "../../contexts/HeaderContext";
 import { ContactContext } from "../../contexts/ContactContext";
-
+import ReactLoading from 'react-loading';
 
 export const Cadastro = () => {
     const { setHeaderState, setTitleState } = useContext(HeaderContext);
-    const { setNome, setSobreNome, setEmail, setTel, setSite, setCategoria, dataContact } = useContext(ContactContext);
+    const { setNome, setSobreNome, setEmail, setTel,setTelFixo, setSite, setCategoria, dataContact } = useContext(ContactContext);
 
     const configHeader = {
         btnConfig: false, btnSave: true, btnDelete: false, btnBack: true, btnEditar: false
@@ -54,27 +53,21 @@ export const Cadastro = () => {
                 </S.BoxInpCad>
 
                 <S.BoxInpCad>
-
-                    <S.BoxInpCad >
-                        <S.InpCadMask type="tel" name="tel" mask={"(99) 99999-9999"} maskChar="_" value={dataContact.tel} placeholder="Celular" onChange={
+                    <S.InpCadMask type="tel" name="telCelular" mask={"(99) 99999-9999"} maskChar="_" value={dataContact.tel} placeholder="Celular" onChange={
                             (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value)} />
-                        <S.ButtonAddTel>
-                            <PlusIcon height={20} width={20} color="var(--bg-button)" />
-                        </S.ButtonAddTel>
-                    </S.BoxInpCad>
-                    <S.SlcCad name="categoria" value={dataContact.categoria} onChange={
-                        (e: React.ChangeEvent<HTMLSelectElement>) => setCategoria(parseInt(e.target.value))
-                    }>
-                        <option value="1">Futebol</option>
-                        <option value="2" >Trabalho</option>
-                        <option value="3">Família</option>
-                    </S.SlcCad>
-
+        
+                    <S.InpCadMask type="tel"  name="telFixo" mask={"(99) 9999-9999"} maskChar="_" value={dataContact.telFixo} placeholder="Fixo"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTelFixo(e.target.value)} />
                 </S.BoxInpCad>
 
                 <S.BoxInpCad>
-                    <S.InpCadMask type="tel" width="20rem" name="tel" mask={"(99) 9999-9999"} maskChar="_" value={dataContact.tel} placeholder="Fixo"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value)} />
+                <S.SlcCad width="19.7rem" name="categoria" value={dataContact.categoria} onChange={
+                        (e: React.ChangeEvent<HTMLSelectElement>) => setCategoria(parseInt(e.target.value))}>
+                        <option value="1">Futebol</option>
+                        <option value="2">Trabalho</option>
+                        <option value="3">Família</option>
+                    </S.SlcCad>
+                
                 </S.BoxInpCad>
             </S.FormCad>
 

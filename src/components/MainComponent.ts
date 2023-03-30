@@ -9,4 +9,8 @@ export const Main = styled.div`
     margin-top: 4rem;
     width: 100%;
     padding: .9rem;
+
+    .paddingLoad{
+        margin-top: 6rem;
+    }
 `

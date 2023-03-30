@@ -5,5 +5,6 @@ export type ContactType = {
     email: string,
     site: string,
     tel: string,
+    telFixo: string,
     categoria: number
 }

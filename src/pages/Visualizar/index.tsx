@@ -12,7 +12,7 @@ export const Visualizar = () => {
     const { id } = useParams();
     const [contact, setContact] = useState<ContactType>({} as ContactType);
     const { setHeaderState,setTitleState } = useContext(HeaderContext);
-    const { setId, setNome, setSobreNome, setTel, setSite, setEmail, setCategoria,dataContact } = useContext(ContactContext);
+    const { setId, setNome, setSobreNome, setTel,setTelFixo, setSite, setEmail, setCategoria,dataContact } = useContext(ContactContext);
     const configHeader = {
         btnConfig: false, btnSave: false, btnDelete: true, btnBack: true, btnEditar: true, title: "Visualizar"
     };
@@ -35,11 +35,12 @@ export const Visualizar = () => {
         setNome(contact.nome);
         setSobreNome(contact.sobrenome);
         setTel(contact.tel);
+        setTelFixo(contact.telFixo);
         setEmail(contact.email);
         setSite(contact.site);
         setCategoria(contact.categoria);
     }
-
+console.log(dataContact.telFixo)
     return (
         <Main>
             <S.BoxInfoContact>
@@ -48,13 +49,15 @@ export const Visualizar = () => {
                 </S.BoxName>
                 <S.BoxInfo>
                     <div className="boxTitleItens">
-                        <span className="labelItem">Telefone:</span>
+                        <span className="labelItem">Celular:</span>
+                        <span className="labelItem">Fixo:</span>
                         <span className="labelItem">Email: </span>
                         <span className="labelItem">Site: </span>
                         <span className="labelItem">Categoria: </span>
                     </div>
                     <div className="boxItens">
                         <span className="item">{contact.tel}</span>
+                        <span className="item">{contact.telFixo}</span>
                         <span className="item">{contact.email}</span>
                         <span className="item">{contact.site}</span>
                         <span className="item">{contact.categoria}</span>

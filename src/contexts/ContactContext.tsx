@@ -12,6 +12,7 @@ interface ContactContextData {
     setSobreNome: (value: string) => void;
     setEmail: (value: string) => void;
     setTel: (value: string) => void;
+    setTelFixo: (value: string) => void;
     setCategoria: (value: number) => void;
     setSite: (value: string) => void;
     resetData: () => void;
@@ -24,6 +25,7 @@ const initialValue = {
         sobrenome: "",
         email: "",
         tel: "",
+        telFixo:"",
         categoria: 0,
         site: ""
     },
@@ -32,6 +34,7 @@ const initialValue = {
     setSobreNome: () => { },
     setEmail: () => { },
     setTel: () => { },
+    setTelFixo: () => { },
     setCategoria: () => { },
     setSite: () => { },
     resetData: () => { },
@@ -56,6 +59,9 @@ export const ContactProvider = ({ children }: ContactContextProps) => {
     const setTel = (tel: string) => {
         setState((prevState) => ({ ...prevState, tel }))
     }
+    const setTelFixo = (telFixo: string) => {
+        setState((prevState) => ({ ...prevState, telFixo }))
+    }
     const setCategoria = (categoria: number) => {
         setState((prevState) => ({ ...prevState, categoria }))
     }
@@ -74,6 +80,7 @@ export const ContactProvider = ({ children }: ContactContextProps) => {
         setEmail,
         setSite,
         setTel,
+        setTelFixo,
         setCategoria,
         resetData
     }

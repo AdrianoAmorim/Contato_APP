@@ -9,89 +9,70 @@ const contacts: ContactType[] = [
         email: "teste@teste.com",
         site: "www.teste.com",
         tel: "2899999-9999",
+        telFixo: "289999-9999",
         categoria: 2
     },
     {
         id: 2,
         nome: "Alice",
-        sobrenome: "Sório Amorim",
-        email: "teste@teste.com",
-        site: "www.teste.com",
-        tel: "2899999-9999",
-        categoria: 2
-    },
-    {
-        id: 3,
-        nome: "Adriano",
         sobrenome: "Amorim",
         email: "teste@teste.com",
         site: "www.teste.com",
         tel: "2899999-9999",
+        telFixo: "289999-9999",
+        categoria: 1
+    },
+    {
+        id: 3,
+        nome: "Cristiane",
+        sobrenome: "Amorim",
+        email: "teste@teste.com",
+        site: "www.teste.com",
+        tel: "2899999-9999",
+        telFixo: "289999-9999",
         categoria: 2
     },
     {
         id: 4,
-        nome: "Alice",
-        sobrenome: "Sório Amorim",
-        email: "teste@teste.com",
-        site: "www.teste.com",
-        tel: "2899999-9999",
-        categoria: 2
-    },
-    {
-        id: 5,
-        nome: "Adriano",
+        nome: "Dercy",
         sobrenome: "Amorim",
         email: "teste@teste.com",
         site: "www.teste.com",
         tel: "2899999-9999",
-        categoria: 2
+        telFixo: "289999-9999",
+        categoria: 3
     },
     {
-        id: 6,
-        nome: "Alice",
-        sobrenome: "Sório Amorim",
+        id: 5,
+        nome: "Bianca",
+        sobrenome: "Amorim",
         email: "teste@teste.com",
         site: "www.teste.com",
         tel: "2899999-9999",
+        telFixo: "289999-9999",
+        categoria: 1
+    },
+    {
+        id: 6,
+        nome: "Roberta",
+        sobrenome: "Amorim",
+        email: "teste@teste.com",
+        site: "www.teste.com",
+        tel: "2899999-9999",
+        telFixo: "289999-9999",
         categoria: 2
     },
     {
         id: 7,
-        nome: "Adriano",
+        nome: "Leli",
         sobrenome: "Amorim",
         email: "teste@teste.com",
         site: "www.teste.com",
         tel: "2899999-9999",
-        categoria: 2
+        telFixo: "289999-9999",
+        categoria: 3
     },
-    {
-        id: 8,
-        nome: "Alice",
-        sobrenome: "Sório Amorim",
-        email: "teste@teste.com",
-        site: "www.teste.com",
-        tel: "2899999-9999",
-        categoria: 2
-    },
-    {
-        id: 9,
-        nome: "Renato Pires",
-        sobrenome: "Amorim",
-        email: "teste@teste.com",
-        site: "www.teste.com",
-        tel: "2899999-9999",
-        categoria: 2
-    },
-    {
-        id: 10,
-        nome: "Cristiane",
-        sobrenome: "Sório Amorim",
-        email: "teste@teste.com",
-        site: "www.teste.com",
-        tel: "2899999-9999",
-        categoria: 2
-    }
+  
 ]
 
 
