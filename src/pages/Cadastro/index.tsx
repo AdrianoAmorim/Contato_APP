@@ -56,7 +56,7 @@ export const Cadastro = () => {
                 <S.BoxInpCad>
 
                     <S.BoxInpCad >
-                        <S.InpCad type="tel" name="tel" value={dataContact.tel} placeholder="Telefone" onChange={
+                        <S.InpCadMask type="tel" name="tel" mask={"(99) 99999-9999"} maskChar="_" value={dataContact.tel} placeholder="Celular" onChange={
                             (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value)} />
                         <S.ButtonAddTel>
                             <PlusIcon height={20} width={20} color="var(--bg-button)" />
@@ -70,6 +70,11 @@ export const Cadastro = () => {
                         <option value="3">Família</option>
                     </S.SlcCad>
 
+                </S.BoxInpCad>
+
+                <S.BoxInpCad>
+                    <S.InpCadMask type="tel" width="20rem" name="tel" mask={"(99) 9999-9999"} maskChar="_" value={dataContact.tel} placeholder="Fixo"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value)} />
                 </S.BoxInpCad>
             </S.FormCad>
 

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import InputMask from 'react-input-mask';
+
 type CadastroProps = {
     width?: string,
     height?: string,
@@ -42,6 +44,18 @@ export const BoxInpCad = styled.div`
 `
 
 export const InpCad = styled.input<CadastroProps>`
+  height:${props => props.height ? props.height : "45px"};
+  width: 100%;
+  max-width: ${props => props.width ? props.width : "28rem"};
+  border: 1px solid var(--border-input);
+  outline: none;
+  padding-inline-start: 15px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 10px;
+  color: var(--text-primary);
+`
+export const InpCadMask = styled(InputMask)<CadastroProps>`
   height:${props => props.height ? props.height : "45px"};
   width: 100%;
   max-width: ${props => props.width ? props.width : "28rem"};
