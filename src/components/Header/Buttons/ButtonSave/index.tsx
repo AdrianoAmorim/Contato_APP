@@ -13,7 +13,7 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
 
     const cadContact = () => {
         if(dataContact){
-            console.log(dataContact)
+            console.log(dataContact.telFixo)
         }else{
             console.log("vazio")
         }
