@@ -25,12 +25,12 @@ export const Cadastro = () => {
 
     //REMOVE AS MASCARAS DOS CAMPOS DE TELEFONE
     const removeMaskTel =(e: ChangeEvent<HTMLInputElement>) =>{
-        console.log(e.target.value.replaceAll(/[^\d]/g, ''));
-        setTel(e.target.value.replaceAll(/[^\d]/g, ''));
-    }
-    const removeMaskTelFixo = (e: ChangeEvent<HTMLInputElement>) =>{
-        console.log(e);
-        setTelFixo(e.target.value.replaceAll(/[^\d]/g, ''));
+        if(e.target.name === 'telCelular'){
+            setTel(e.target.value.replaceAll(/[^\d]/g, ''));
+            console.log(dataContact.tel)
+        }else{
+            setTelFixo(e.target.value.replaceAll(/[^\d]/g, ''));
+        }
     }
 
     //BLOQUEIO O EVENTO PADRAO DE SUBMIT DO FORMULARIO
@@ -66,7 +66,7 @@ export const Cadastro = () => {
                             (e: React.ChangeEvent<HTMLInputElement>) => removeMaskTel(e)} />
         
                     <S.InpCadMask type="tel"  name="telFixo" mask={"(99) 9999-9999"} maskChar="_" value={dataContact.telFixo} placeholder="Fixo"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => removeMaskTelFixo(e) } />
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => removeMaskTel(e) } />
                 </S.BoxInpCad>
 
                 <S.BoxInpCad>
