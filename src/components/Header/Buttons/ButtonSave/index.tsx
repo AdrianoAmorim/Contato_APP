@@ -1,6 +1,7 @@
 import { ReactNode, useContext } from "react";
 import { ContactContext } from "../../../../contexts/ContactContext";
 import * as S from "./styled"
+import { saveContact } from "../../../../services/Api";
 
 interface ButtonProps {
     children: ReactNode;
@@ -12,11 +13,8 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
     const {dataContact} = useContext(ContactContext);
 
     const cadContact = () => {
-        if(dataContact){
-            console.log(dataContact.telFixo)
-        }else{
-            console.log("vazio")
-        }
+      const data = saveContact(dataContact);
+      console.log(data)
     }
 
 

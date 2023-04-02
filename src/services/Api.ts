@@ -1,5 +1,8 @@
-import { ContactType } from "../types/ContactType";
+import axios, { AxiosResponse } from "axios";
+import { ContactHomeType, ContactType } from "../types/ContactType";
 
+
+const url_api = "http://localhost:4041";
 //SIMULA OS CONTATOS CADASTRADOS NO BD
 const contacts: ContactType[] = [
     {
@@ -72,13 +75,20 @@ const contacts: ContactType[] = [
         telFixo: "289999-9999",
         categoria: 3
     },
-  
+
 ]
 
 
-//SIMULA A CONSULTA E RETORNA TODOS OS CONTATOS CADASTRO
-export const getContacts = () => {
-    return contacts;
+//BUSCA TODOS OS CONTATOS SALVOS
+export const getAllContacts = async (): Promise<ContactHomeType[]> => {
+    try {
+        const response = await axios.get<ContactHomeType[]>(`${url_api}/contatos`);
+        return response.data;
+    } catch (error) {
+        return error as any
+    }
+
+
 }
 
 //SIMULA A CONSULTA DE UM CONTATO
@@ -92,3 +102,13 @@ export const getContact = (id: number) => {
     return contact;
 }
 
+
+export const saveContact = async (contact: ContactType) => {
+    try {
+        const response = await axios.post<ContactType>(`${url_api}/cadContato`,contact);
+        return response.data;
+
+    } catch (error) {
+        console.log(error)
+    }
+}

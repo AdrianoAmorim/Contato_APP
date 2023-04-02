@@ -1,18 +1,17 @@
 
 import { MagnifyingGlassIcon, PersonIcon, PlusIcon } from "@radix-ui/react-icons";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import ReactLoading from "react-loading";
 import { Link, useNavigate } from "react-router-dom";
 import { Main } from "../../components/MainComponent";
 import { HeaderContext } from "../../contexts/HeaderContext";
-import { getContacts } from "../../services/Api";
-import { ContactType } from "../../types/ContactType";
+import { getAllContacts } from "../../services/Api";
+import { ContactHomeType } from "../../types/ContactType";
 import * as S from "./styled";
 
 export const Home = () => {
-    const [load, setLoad] = useState(true);
-    const { setHeaderState, setTitleState } = useContext(HeaderContext);
-    const [dataContacts, setDataContacts] = useState<ContactType[]>(getContacts());
+    const { setHeaderState, setTitleState, setLoaderState, loaderState } = useContext(HeaderContext);
+    const [allContacts, setAllContacts] = useState<ContactHomeType[]>([]);
     const navigate = useNavigate();
 
     //CONFIGURA OS BOTOES DO HEADER
@@ -24,19 +23,40 @@ export const Home = () => {
         btnEditar: false,
     };
 
+    //SETA A CONFIGURACOES DOS BOTOES NO CONTEXT DO HEADER    
+    useEffect(() => {
+        setHeaderState(configHeader);
+        setTitleState({ title: "CONTATOS" });
+    }, [])
+
+    //FAZ A REQUISICAO DA LISTA DE CONTATOS ATUALIZADA
+    useEffect(() => {
+        setLoaderState(true);
+        const getDataContacts = async () => {
+            try {
+                const res = await getAllContacts();
+                validateAllContacts(res);
+            } catch (error) {
+                console.log("dentro do catch")
+                console.log(error);
+            } finally {
+                setLoaderState(false);
+            }
+        }
+        getDataContacts();
+    }, [])
+
     //CHAMA A TELA DE VISUALIZACAO DO CONTATO PASSANDO O ID DO CONTATO SELECIONADO PELO PARAMETRO uRL
     const viewContact = (id: number) => {
         navigate(`/visualizar/${id}`);
     }
 
-    //SETA A CONFIGURACOES DOS BOTOES NO CONTEXT DO HEADER    
-    useEffect(() => {
-        setHeaderState(configHeader);
-        setTitleState({ title: "CONTATOS" });
-        setTimeout(() => {
-            setLoad(false)
-        }, 1000);
-    }, [])
+    //VALIDAR COM OS TRATAMENTOS DE ERROS
+    const validateAllContacts = (res: ContactHomeType[]) => {
+        //FALTA IMPLEMENTAR OS TRATAMENTOS DE ERROS...
+
+        setAllContacts(res);
+    }
 
     return (
         <Main>
@@ -46,10 +66,10 @@ export const Home = () => {
             </S.BoxInpSearch>
 
 
-            {load ? <ReactLoading className="paddingLoad" type="spinningBubbles" height='50px' width='50px' color="var(--bg-button)" /> :
+            {loaderState ? <ReactLoading className="paddingLoad" type="spinningBubbles" height='50px' width='50px' color="var(--bg-button)" /> :
                 <S.BoxCardContacts>
                     {
-                        dataContacts.map((contact, i) =>
+                        allContacts.map((contact, i) =>
                             <S.CardContacts key={i} onClick={() => viewContact(contact.id)}>
                                 <PersonIcon className="iconContact" color="var(--bg-header)" width={20} height={20} />
                                 <S.NameContacts>

@@ -8,3 +8,7 @@ export type ContactType = {
     telFixo: string,
     categoria: number
 }
+export type ContactHomeType = {
+    id:number,
+    nome:string
+}
