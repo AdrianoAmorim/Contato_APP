@@ -11,8 +11,8 @@ interface ContactContextData {
     setNome: (value: string) => void;
     setSobreNome: (value: string) => void;
     setEmail: (value: string) => void;
-    setTel: (value: string) => void;
-    setTelFixo: (value: string) => void;
+    setCelular: (value: string) => void;
+    setFixo: (value: string) => void;
     setCategoria: (value: number) => void;
     setSite: (value: string) => void;
     resetDataContext: () => void;
@@ -24,17 +24,17 @@ const initialValue = {
         nome: "",
         sobrenome: "",
         email: "",
-        tel: "",
-        telFixo:"",
-        categoria: 0,
+        celular: "",
+        fixo:"",
+        categoria: 1,
         site: ""
     },
     setId: () => { },
     setNome: () => { },
     setSobreNome: () => { },
     setEmail: () => { },
-    setTel: () => { },
-    setTelFixo: () => { },
+    setCelular: () => { },
+    setFixo: () => { },
     setCategoria: () => { },
     setSite: () => { },
     resetDataContext: () => { },
@@ -56,13 +56,13 @@ export const ContactProvider = ({ children }: ContactContextProps) => {
     const setSite = (site: string) => {
         setState((prevState) => ({ ...prevState, site }))
     }
-    const setTel = (tel: string) => {
-        setState((prevState) => ({ ...prevState, tel }))
+    const setCelular = (celular: string) => {
+        setState((prevState) => ({ ...prevState, celular }))
     }
-    const setTelFixo = (telFixo: string) => {
-        setState((prevState) => ({ ...prevState, telFixo }))
+    const setFixo = (fixo: string) => {
+        setState((prevState) => ({ ...prevState, fixo }))
     }
-    const setCategoria = (categoria: number) => {
+    const setCategoria = (categoria:number) => {
         setState((prevState) => ({ ...prevState, categoria }))
     }
     const setId = (id: number) => {
@@ -79,8 +79,8 @@ export const ContactProvider = ({ children }: ContactContextProps) => {
         setSobreNome,
         setEmail,
         setSite,
-        setTel,
-        setTelFixo,
+        setCelular,
+        setFixo,
         setCategoria,
         resetDataContext
     }

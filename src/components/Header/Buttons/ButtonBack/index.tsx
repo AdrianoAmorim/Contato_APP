@@ -10,18 +10,18 @@ interface ButtonProps {
 }
 
 export const ButtonBack = ({ children, show, bgcolor }: ButtonProps) => {
-    const {resetData} = useContext(ContactContext);
+    const {resetDataContext} = useContext(ContactContext);
     const navigate = useNavigate();
 
-    const resetDataContact = ()=>{
-        resetData();
-        navigate('/')
+    const backHome = ()=>{
+        resetDataContext();
+        navigate('/');
     }
 
     return (
         <>
             {show &&
-                <S.Button bgcolor={bgcolor} onClick={resetDataContact}>
+                <S.Button bgcolor={bgcolor} onClick={backHome}>
                     {children}
                 </S.Button>
             }

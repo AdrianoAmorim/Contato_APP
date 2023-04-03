@@ -1,13 +1,16 @@
 import avatar from "../../assets/img/avatarCad.png"
-import { ChangeEvent, FormEvent, useContext, useEffect } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { Main } from "../../components/MainComponent";
 import * as S from './styled';
 import { HeaderContext } from "../../contexts/HeaderContext";
 import { ContactContext } from "../../contexts/ContactContext";
 import ReactLoading from 'react-loading';
+import { getAllCategories } from "../../services/Api";
+import { CategoryType } from "../../types/category";
 
 export const Cadastro = () => {
-    const { setHeaderState, setTitleState, loaderState } = useContext(HeaderContext);
+    const [categoriaState, setCategoriaState] = useState<CategoryType[]>([]);
+    const { setHeaderState, setTitleState, loaderState,setLoaderState } = useContext(HeaderContext);
     const { setNome, setSobreNome, setEmail, setTel, setTelFixo, setSite, setCategoria, dataContact } = useContext(ContactContext);
 
     const configHeader = {
@@ -16,11 +19,33 @@ export const Cadastro = () => {
     //Seta na primeira montagem do component os botoes do header 
     useEffect(() => {
         setHeaderState(configHeader);
+
         if (dataContact.id) {
             setTitleState({ title: "EDITAR" })
         } else {
             setTitleState({ title: "NOVO CONTATO" })
         }
+    }, [])
+
+    //CARREGA O SELECT DE CATEGORIA DINAMICAMENTE
+    useEffect(() => {
+        const getCategory = async () => {
+            setLoaderState(true);
+            try {
+                const response = await getAllCategories();
+                if(response.aviso){
+                  alert(response.msg)
+                }else{
+                    setCategoriaState(response);
+                }
+            } catch (error) {
+                console.log(error);
+            }finally{
+                setLoaderState(false)
+            }
+        }
+        getCategory();
+
     }, [])
 
     //REMOVE AS MASCARAS DOS CAMPOS DE TELEFONE
@@ -74,11 +99,14 @@ export const Cadastro = () => {
                         </S.BoxInpCad>
 
                         <S.BoxInpCad>
-                            <S.SlcCad width="19.7rem" name="categoria" value={dataContact.categoria} onChange={
+                            <S.SlcCad width="19.9rem" name="categoria" value={dataContact.categoria} onChange={
                                 (e: React.ChangeEvent<HTMLSelectElement>) => setCategoria(parseInt(e.target.value))}>
-                                <option value="1">Futebol</option>
-                                <option value="2">Trabalho</option>
-                                <option value="3">Família</option>
+                                {
+                                    categoriaState.map((categoria) =>
+                                        <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
+                                    )
+                                }
+
                             </S.SlcCad>
 
                         </S.BoxInpCad>

@@ -69,7 +69,7 @@ export const InpCadMask = styled(InputMask)<CadastroProps>`
 `
 
 export const SlcCad = styled.select<CadastroProps>`
-height:${props => props.height ? props.height : "45px"};
+  height:${props => props.height ? props.height : "45px"};
   width: 100%;
   max-width: ${props => props.width ? props.width : "28rem"};
   border: 1px solid var(--border-input);
@@ -78,6 +78,7 @@ height:${props => props.height ? props.height : "45px"};
   font-weight: 500;
   border-radius: 10px;
   color: var(--text-primary);
+  padding-inline-start:10px;
 `
 export const ButtonAddTel = styled.button`
     background: none;

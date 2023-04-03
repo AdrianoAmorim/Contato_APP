@@ -1,3 +1,4 @@
+
 export type ContactType = {
     [key:string]: string | number,
     id: number,
@@ -5,8 +6,8 @@ export type ContactType = {
     sobrenome: string,
     email: string,
     site: string,
-    tel: string,
-    telFixo: string,
+    celular: string,
+    fixo: string,
     categoria: number
 }
 export type ContactHomeType = {

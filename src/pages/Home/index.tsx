@@ -34,8 +34,8 @@ export const Home = () => {
         setLoaderState(true);
         const getDataContacts = async () => {
             try {
-                const res = await getAllContacts();
-                validateAllContacts(res);
+                const data = await getAllContacts();
+                validateAllContacts(data);
             } catch (error) {
                 console.log("dentro do catch")
                 console.log(error);
