@@ -15,7 +15,7 @@ export const Visualizar = () => {
     const [contact, setContact] = useState<ContactType>({} as ContactType);
     const [nomeCategoria, setNomeCategoria] = useState("");
     const { setHeaderState, setTitleState, loaderState, setLoaderState } = useContext(HeaderContext);
-    const { setId, setNome, setSobreNome, setCelular, setFixo, setSite, setEmail, setCategoria } = useContext(ContactContext);
+    const { setId, setNome, setSobreNome, setCelular, setFixo, setSite, setEmail, setCategoria, dataContact } = useContext(ContactContext);
     const configHeader = {
         btnConfig: false, btnSave: false, btnDelete: true, btnBack: true, btnEditar: true, title: "Visualizar"
     };
@@ -23,44 +23,52 @@ export const Visualizar = () => {
     //INSERE na primeira montagem do component os botoes do header e o contato selecionado da tela Home
     useEffect(() => {
         setHeaderState(configHeader);
-        setTitleState({ title: "VIZUALIZAR" })
+        setTitleState({ title: "VIZUALIZAR" });
+    }, []);
+
+
+  //PEGA AS INFORMACOES DO CONTATO SELECIONADO E SETA NA STATE LOCAL E NO CONTEXT
+    useEffect(() => {
+        const getContactSelected = async (id: string) => {
+            setLoaderState(true);
+
+            try {
+                const response = await getContact(parseInt(id));
+
+                if (response.id > 0) {
+                    setContact(response);
+
+                    setId(response.id);
+                    setNome(response.nome);
+                    setSobreNome(response.sobrenome);
+                    setCelular(response.celular);
+                    setFixo(response.fixo);
+                    setEmail(response.email);
+                    setSite(response.site);
+                    setCategoria(response.categoria.id);
+                    setNomeCategoria(response.categoria.nome);
+                    console.log("dentro do fi")
+                } else {
+                    alert("Ops! Houve Algum Erro ao Buscar os dados deste Contato!");
+                    navigate("/");
+                }
+
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setLoaderState(false);
+            }
+
+
+        }
         if (id) {
             getContactSelected(id);
         }
-    }, []);
-
-    //PEGA AS INFORMACOES DO CONTATO SELECIONADO E SETA NA STATE LOCAL E NO CONTEXT
-    const getContactSelected = async (id: string) => {
-        setLoaderState(true);
-
-        try {
-            const response = await getContact(parseInt(id));
-
-            if(response.id > 0){
-                setContact(response);
-                setId(contact.id);
-                setNome(contact.nome);
-                setSobreNome(contact.sobrenome);
-                setCelular(contact.celular);
-                setFixo(contact.fixo);
-                setEmail(contact.email);
-                setSite(contact.site);
-                setCategoria(response.categoria.id);
-                setNomeCategoria(response.categoria.nome);
-                
-            }else{
-                alert("Ops! Houve Algum Erro ao Buscar os dados deste Contato!");
-                navigate("/");
-            }
-
-        } catch (error) {
-            console.log(error)
-        }finally{
-            setLoaderState(false);
-        }
+    }, [])
+  
 
 
-    }
+    console.log(dataContact)
     return (
         <Main>
 

@@ -11,7 +11,7 @@ import { CategoryType } from "../../types/category";
 export const Cadastro = () => {
     const [categoriaState, setCategoriaState] = useState<CategoryType[]>([]);
     const { setHeaderState, setTitleState, loaderState,setLoaderState } = useContext(HeaderContext);
-    const { setNome, setSobreNome, setEmail, setTel, setTelFixo, setSite, setCategoria, dataContact } = useContext(ContactContext);
+    const { setNome, setSobreNome, setEmail, setCelular, setFixo, setSite, setCategoria, dataContact } = useContext(ContactContext);
 
     const configHeader = {
         btnConfig: false, btnSave: true, btnDelete: false, btnBack: true, btnEditar: false
@@ -51,10 +51,9 @@ export const Cadastro = () => {
     //REMOVE AS MASCARAS DOS CAMPOS DE TELEFONE
     const removeMaskTel = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === 'telCelular') {
-            setTel(e.target.value.replaceAll(/[^\d]/g, ''));
-            console.log(dataContact.tel)
+            setCelular(e.target.value.replaceAll(/[^\d]/g, ''));
         } else {
-            setTelFixo(e.target.value.replaceAll(/[^\d]/g, ''));
+            setFixo(e.target.value.replaceAll(/[^\d]/g, ''));
         }
     }
 
@@ -91,10 +90,10 @@ export const Cadastro = () => {
                         </S.BoxInpCad>
 
                         <S.BoxInpCad>
-                            <S.InpCadMask type="tel" name="telCelular" mask={"(99) 99999-9999"} maskChar="_" value={dataContact.tel} placeholder="Celular" onChange={
+                            <S.InpCadMask type="tel" name="telCelular" mask={"(99) 99999-9999"} maskChar="_" value={dataContact.celular} placeholder="Celular" onChange={
                                 (e: React.ChangeEvent<HTMLInputElement>) => removeMaskTel(e)} />
 
-                            <S.InpCadMask type="tel" name="telFixo" mask={"(99) 9999-9999"} maskChar="_" value={dataContact.telFixo} placeholder="Fixo"
+                            <S.InpCadMask type="tel" name="telFixo" mask={"(99) 9999-9999"} maskChar="_" value={dataContact.fixo} placeholder="Fixo"
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => removeMaskTel(e)} />
                         </S.BoxInpCad>
 
