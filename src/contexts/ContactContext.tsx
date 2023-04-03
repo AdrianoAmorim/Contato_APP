@@ -15,7 +15,7 @@ interface ContactContextData {
     setTelFixo: (value: string) => void;
     setCategoria: (value: number) => void;
     setSite: (value: string) => void;
-    resetData: () => void;
+    resetDataContext: () => void;
 }
 
 const initialValue = {
@@ -37,7 +37,7 @@ const initialValue = {
     setTelFixo: () => { },
     setCategoria: () => { },
     setSite: () => { },
-    resetData: () => { },
+    resetDataContext: () => { },
 }
 export const ContactContext = createContext<ContactContextData>(initialValue)
 
@@ -68,7 +68,7 @@ export const ContactProvider = ({ children }: ContactContextProps) => {
     const setId = (id: number) => {
         setState((prevState) => ({ ...prevState, id }))
     }
-    const resetData = () => {
+    const resetDataContext = () => {
         setState(initialValue.dataContact);
     }
 
@@ -82,7 +82,7 @@ export const ContactProvider = ({ children }: ContactContextProps) => {
         setTel,
         setTelFixo,
         setCategoria,
-        resetData
+        resetDataContext
     }
     return (
         <ContactContext.Provider value={contact}>

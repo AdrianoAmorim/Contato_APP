@@ -1,4 +1,5 @@
 export type ContactType = {
+    [key:string]: string | number,
     id: number,
     nome: string,
     sobrenome: string,
