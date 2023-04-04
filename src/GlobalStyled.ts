@@ -23,8 +23,21 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
-.teste{
-    margin-top: 150px;
+.fadeIn{
+ animation: fadeIn .8s;
 }
+
+
+
+@keyframe fadeIn{
+    0%{
+        opacity: 0
+    }
+    100%{
+        opacity: 1
+    }
+}
+
 `

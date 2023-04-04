@@ -67,7 +67,7 @@ export const Home = () => {
 
 
             {loaderState ? <ReactLoading className="paddingLoad" type="spinningBubbles" height='50px' width='50px' color="var(--bg-button)" /> :
-                <S.BoxCardContacts>
+                <S.BoxCardContacts className="fadeIn">
                     {
                         allContacts.map((contact, i) =>
                             <S.CardContacts key={i} onClick={() => viewContact(contact.id)}>

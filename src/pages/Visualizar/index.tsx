@@ -15,7 +15,7 @@ export const Visualizar = () => {
     const [contact, setContact] = useState<ContactType>({} as ContactType);
     const [nomeCategoria, setNomeCategoria] = useState("");
     const { setHeaderState, setTitleState, loaderState, setLoaderState } = useContext(HeaderContext);
-    const { setId, setNome, setSobreNome, setCelular, setFixo, setSite, setEmail, setCategoria, dataContact } = useContext(ContactContext);
+    const { setId, setNome, setSobreNome, setCelular, setFixo, setSite, setEmail, setCategoria } = useContext(ContactContext);
     const configHeader = {
         btnConfig: false, btnSave: false, btnDelete: true, btnBack: true, btnEditar: true, title: "Visualizar"
     };
@@ -29,9 +29,8 @@ export const Visualizar = () => {
 
   //PEGA AS INFORMACOES DO CONTATO SELECIONADO E SETA NA STATE LOCAL E NO CONTEXT
     useEffect(() => {
+        setLoaderState(true);
         const getContactSelected = async (id: string) => {
-            setLoaderState(true);
-
             try {
                 const response = await getContact(parseInt(id));
 
@@ -47,7 +46,7 @@ export const Visualizar = () => {
                     setSite(response.site);
                     setCategoria(response.categoria.id);
                     setNomeCategoria(response.categoria.nome);
-                    console.log("dentro do fi")
+                    
                 } else {
                     alert("Ops! Houve Algum Erro ao Buscar os dados deste Contato!");
                     navigate("/");
@@ -65,10 +64,7 @@ export const Visualizar = () => {
             getContactSelected(id);
         }
     }, [])
-  
 
-
-    console.log(dataContact)
     return (
         <Main>
 

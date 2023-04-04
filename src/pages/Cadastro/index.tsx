@@ -19,9 +19,10 @@ export const Cadastro = () => {
     //Seta na primeira montagem do component os botoes do header 
     useEffect(() => {
         setHeaderState(configHeader);
-
+        console.log("dentro do componente cadastro");
+        console.log(dataContact);
         if (dataContact.id) {
-            setTitleState({ title: "EDITAR" })
+            setTitleState({ title: "EDITAR" });
         } else {
             setTitleState({ title: "NOVO CONTATO" })
         }

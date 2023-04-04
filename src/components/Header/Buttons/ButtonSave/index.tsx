@@ -20,7 +20,6 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
     const cadContact = async () => {
         setLoaderState(true);
         const validated = validateField(dataContact);
-
         if (validated) {
             try {
                 const data = await saveContact(dataContact);
@@ -45,18 +44,25 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
 
     //FAZ A VALIDAÇÃO DOS CAMPOS, SE ESTÃO VAZIOS
     const validateField = (contact: ContactType) => {
-        if (contact['nome'] === "" || contact['tel'] === "") {
+        if (contact['nome'] === "" || contact['celular'] === "") {
             return false
         }
         return true
     }
 
-
+    //VERIFICA QUAL A ACAO QUE O BOTAO IRAR TOMAR (QUAL REQUISIÇÃO CHAMARA)
+    const checkActionButton = ()=>{
+        if(dataContact.id != 0){
+            console.log('estou no editar');
+        }else{
+            cadContact() ;
+        }
+    }
 
     return (
         <>
             {show &&
-                <S.Button bgcolor={bgcolor} onClick={cadContact}>
+                <S.Button bgcolor={bgcolor} onClick={checkActionButton}>
                     {children}
                 </S.Button>
             }
