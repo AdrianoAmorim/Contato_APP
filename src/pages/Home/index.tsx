@@ -34,13 +34,11 @@ export const Home = () => {
         setLoaderState(true);
         const getDataContacts = async () => {
             try {
-                const data = await getAllContacts();
-                validateAllContacts(data);
+                const res = await getAllContacts();
+                validateAllContacts(res);
             } catch (error) {
-                console.log("dentro do catch")
                 console.log(error);
-            } finally {
-                setLoaderState(false);
+                alert("Erro de Comunicação com o servidor! Tente Novamente Mais Tarde.")
             }
         }
         getDataContacts();
@@ -52,10 +50,16 @@ export const Home = () => {
     }
 
     //VALIDAR COM OS TRATAMENTOS DE ERROS
-    const validateAllContacts = (res: ContactHomeType[]) => {
-        //FALTA IMPLEMENTAR OS TRATAMENTOS DE ERROS...
+    const validateAllContacts = (res: ContactHomeType[] | any) => {
+        if (res.response && res.response.data) {
+            if(res.response.data.error){
+                alert(`Error: ${res.response.data.msg}`)
+            }
+        }else{
+            setAllContacts(res);
+            setLoaderState(false);
+        }
 
-        setAllContacts(res);
     }
 
     return (

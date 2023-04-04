@@ -18,7 +18,21 @@ export const BoxName = styled.div`
     padding: 1rem;
     background-color: var(--border-input);
     color: #fcfcfc;
-`
+
+    @media (max-width: 750px){
+    text-align:center;
+        & h1{
+
+            font-size: 1.6rem;
+        }
+    }
+    @media (max-width: 450px){
+        & h1{
+
+            font-size: 1.3rem;
+        }
+    }
+    `
 export const BoxInfo = styled.div`
     display: flex;
     width: 100%;
@@ -39,7 +53,7 @@ export const BoxInfo = styled.div`
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        margin-left: 1rem;
+        margin-left: .1rem;
         .item{
             font-size: 1.2rem;
             font-weight: normal;
@@ -47,6 +61,9 @@ export const BoxInfo = styled.div`
             padding-bottom: .2rem;
             padding-left: .4rem;
             border-bottom: 1px solid #8bc5c5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
     

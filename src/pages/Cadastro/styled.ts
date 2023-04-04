@@ -17,7 +17,7 @@ export const FormCad = styled.form`
     max-width: 45rem;
     border-radius: 10px;
     padding: 4rem 2rem 2rem 2rem;
-    
+     
 `
 export const BoxAvatar = styled.div`
     display: flex;
@@ -30,6 +30,10 @@ export const BoxAvatar = styled.div`
     & img{
         width: 100%;
     }
+    @media (max-width: 750px){
+       max-width:6rem;
+       margin-bottom:-3.2rem;
+    }
 `
 export const BoxInpCad = styled.div`
     display: flex;
@@ -40,6 +44,10 @@ export const BoxInpCad = styled.div`
     gap: 1rem;
     &:nth-child(1){
         margin-top: 0;
+    }
+
+    @media (max-width: 750px){
+        flex-direction:column;
     }
 `
 
@@ -54,6 +62,12 @@ export const InpCad = styled.input<CadastroProps>`
   font-weight: 500;
   border-radius: 10px;
   color: var(--text-primary);
+
+  @media (max-width: 750px){
+     font-size: 1.1rem;
+    }
+  
+  
 `
 export const InpCadMask = styled(InputMask)<CadastroProps>`
   height:${props => props.height ? props.height : "45px"};
@@ -66,6 +80,10 @@ export const InpCadMask = styled(InputMask)<CadastroProps>`
   font-weight: 500;
   border-radius: 10px;
   color: var(--text-primary);
+
+  @media (max-width: 750px){
+     font-size: 1.1rem;
+    }
 `
 
 export const SlcCad = styled.select<CadastroProps>`
@@ -79,12 +97,10 @@ export const SlcCad = styled.select<CadastroProps>`
   border-radius: 10px;
   color: var(--text-primary);
   padding-inline-start:10px;
-`
-export const ButtonAddTel = styled.button`
-    background: none;
-    border: none;
-    z-index:1;
-    border-radius: 10px;
-    cursor: pointer;
-   margin-left: -3rem;
+
+  @media (max-width: 750px){
+        max-width: 28rem;
+        font-size: 1.1rem;
+    }
+
 `
