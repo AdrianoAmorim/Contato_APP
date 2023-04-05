@@ -1,6 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
+import TitilliumWeb from './assets/fonts/TitilliumWeb-SemiBold.ttf'
 
 export const GlobalStyles = createGlobalStyle`
+@font-face{
+    font-family: 'TitilliumWeb';
+    src: url(${TitilliumWeb});
+}
+
+*{
+    font-family: "TitilliumWeb";
+}
 :root{
     --background: #ebf5f4;
     --bg-header: #408080;
@@ -25,19 +34,6 @@ body{
     box-sizing: border-box;
     
 }
-.fadeIn{
- animation: fadeIn .8s;
-}
 
-
-
-@keyframe fadeIn{
-    0%{
-        opacity: 0
-    }
-    100%{
-        opacity: 1
-    }
-}
 
 `

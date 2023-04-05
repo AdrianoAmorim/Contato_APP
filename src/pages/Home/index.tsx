@@ -1,6 +1,6 @@
 
 import { MagnifyingGlassIcon, PersonIcon, PlusIcon } from "@radix-ui/react-icons";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ReactLoading from "react-loading";
 import { Link, useNavigate } from "react-router-dom";
 import { Main } from "../../components/MainComponent";
@@ -27,23 +27,22 @@ export const Home = () => {
     useEffect(() => {
         setHeaderState(configHeader);
         setTitleState({ title: "CONTATOS" });
-    }, [])
-
-    //FAZ A REQUISICAO DA LISTA DE CONTATOS ATUALIZADA
-    useEffect(() => {
         setLoaderState(true);
-        const getDataContacts = async () => {
-            try {
-                const res = await getAllContacts();
-                validateAllContacts(res);
-            } catch (error) {
-                console.log(error);
-                alert("Erro de Comunicação com o servidor! Tente Novamente Mais Tarde.")
-            }
-        }
         getDataContacts();
     }, [])
 
+
+
+    //FAZ A REQUIZIÇÃO DE TODOS OS CONTATOS CADASTRADOS
+    const getDataContacts = async () => {
+        try {
+            const res = await getAllContacts();
+            validateAllContacts(res);
+        } catch (error) {
+            console.log(error)
+            alert("Erro de Comunicação com o servidor! Tente Novamente Mais Tarde.")
+        }
+    }
     //CHAMA A TELA DE VISUALIZACAO DO CONTATO PASSANDO O ID DO CONTATO SELECIONADO PELO PARAMETRO uRL
     const viewContact = (id: number) => {
         navigate(`/visualizar/${id}`);
@@ -51,13 +50,14 @@ export const Home = () => {
 
     //VALIDAR COM OS TRATAMENTOS DE ERROS
     const validateAllContacts = (res: ContactHomeType[] | any) => {
+    
         if (res.response && res.response.data) {
             if(res.response.data.error){
                 alert(`Error: ${res.response.data.msg}`)
             }
         }else{
-            setAllContacts(res);
             setLoaderState(false);
+            setAllContacts(res);
         }
 
     }
@@ -71,9 +71,9 @@ export const Home = () => {
 
 
             {loaderState ? <ReactLoading className="paddingLoad" type="spinningBubbles" height='50px' width='50px' color="var(--bg-button)" /> :
-                <S.BoxCardContacts className="fadeIn">
+                <S.BoxCardContacts>
                     {
-                        allContacts.map((contact, i) =>
+                      allContacts.map((contact, i) =>
                             <S.CardContacts key={i} onClick={() => viewContact(contact.id)}>
                                 <PersonIcon className="iconContact" color="var(--bg-header)" width={20} height={20} />
                                 <S.NameContacts>
@@ -81,6 +81,7 @@ export const Home = () => {
                                 </S.NameContacts>
                             </S.CardContacts>
                         )
+                       
                     }
                 </S.BoxCardContacts>
             }

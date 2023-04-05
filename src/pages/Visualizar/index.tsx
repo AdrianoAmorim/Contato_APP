@@ -13,8 +13,7 @@ export const Visualizar = () => {
   const navigate = useNavigate();
   const [contact, setContact] = useState<ContactType>({} as ContactType);
   const [nomeCategoria, setNomeCategoria] = useState("");
-  const { setHeaderState, setTitleState, loaderState, setLoaderState } =
-    useContext(HeaderContext);
+  const { setHeaderState, setTitleState, loaderState, setLoaderState } = useContext(HeaderContext);
   const {
     setId,
     setNome,

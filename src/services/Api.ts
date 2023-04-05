@@ -7,7 +7,10 @@ const url_api = "http://localhost:4041";
 //RETORNA TODOS OS CONTATOS SALVOS
 export const getAllContacts = async (): Promise<ContactHomeType[] |any> => {
     try {
-        const response = await axios.get<ContactHomeType[]>(`${url_api}/contatos`);
+        const response = await axios.get<ContactHomeType[]>(`${url_api}/contatos`)
+        .catch((error)=>{
+            return error
+        })
         return response.data;
 
     } catch (error) {
