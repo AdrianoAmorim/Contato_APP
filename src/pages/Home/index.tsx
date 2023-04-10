@@ -8,10 +8,12 @@ import { HeaderContext } from "../../contexts/HeaderContext";
 import { getAllContacts } from "../../services/Api";
 import { ContactHomeType } from "../../types/ContactType";
 import * as S from "./styled";
+import { Modal } from "../../components/Modal";
 
 export const Home = () => {
     const { setHeaderState, setTitleState, setLoaderState, loaderState } = useContext(HeaderContext);
     const [allContacts, setAllContacts] = useState<ContactHomeType[]>([]);
+    
     const navigate = useNavigate();
 
     //CONFIGURA OS BOTOES DO HEADER
@@ -62,6 +64,7 @@ export const Home = () => {
 
     return (
         <Main>
+
             <S.BoxInpSearch>
                 <S.InpSearch type="search" placeholder="Buscar Contatos" />
                 <MagnifyingGlassIcon id="iconSearch" color="var(--bg-header)" width={22} height={22} />

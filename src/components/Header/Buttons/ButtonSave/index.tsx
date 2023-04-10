@@ -1,10 +1,11 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { ContactContext } from "../../../../contexts/ContactContext";
 import * as S from "./styled";
 import { saveContact, updateContact } from "../../../../services/Api";
 import { ContactType } from "../../../../types/ContactType";
 import { HeaderContext } from "../../../../contexts/HeaderContext";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../../../Modal";
 
 interface ButtonProps {
   children: ReactNode;
@@ -15,7 +16,40 @@ interface ButtonProps {
 export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
   const { dataContact, resetDataContext } = useContext(ContactContext);
   const { setLoaderState } = useContext(HeaderContext);
+  const [openModalState, setOpenModalState] = useState(false);
+  const [textContentModal,setContentModal] = useState("");
+  const [modalError,setModalError] = useState(false);
+  const [titleModal,setTitleModal] = useState("");
   const navigate = useNavigate();
+
+
+  //CUSTOMIZA O TEXTO DO MODAL
+  const customizeModal = (title:string,textContent:string)=>{
+    setContentModal(textContent);
+    setTitleModal(title);
+  }
+
+  //FUNCAO AO ABRIR O MODAL CUSTOMIZA TITULO E MENSAGEM DO CONTEUDO DO MODAL
+  const openModal = (title:string,textContent:string,error?:boolean) => {
+    customizeModal(title,textContent);
+     if(error){
+      setModalError(true);
+     } else{
+      setModalError(false);
+     }
+    setOpenModalState(true);
+    
+  };
+
+  //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
+  const closeModal=()=>{
+    setLoaderState(false);
+    setOpenModalState(false);
+    if(validateField(dataContact)){
+      resetDataContext();
+      navigate("/");
+    }
+  }
 
   //CADASTRA UM NOVO USUARIO
   const cadContact = async () => {
@@ -25,20 +59,17 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
       try {
         const response = await saveContact(dataContact);
         if (response.id > 0) {
-          alert("Cadastrado Com sucesso");
-          resetDataContext();
-          setLoaderState(false);
-          navigate("/");
+          openModal("AVISO","Contato cadastrado com sucesso!",);
         } else {
           console.log(response);
-          alert("Ops: Houve um Erro ao cadastrar o Usuario!");
+          openModal("ERRO","Erro ao Atualizar o Contato!",true);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
       setLoaderState(false);
-      alert("Campo Nome e Celular são Obrigatórios!");
+     openModal("ERRO","Os Campos NOME e CELULAR são obrigatórios!",true);
     }
   };
 
@@ -51,17 +82,15 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
       try {
         const response = await updateContact(contact);
         if (response.id > 0) {
-          alert("Atualizado com Sucesso!");
-          setLoaderState(false);
-          resetDataContext();
-          navigate("/");
+         openModal("AVISO","Contato Atualizado com sucesso!!");
         }
       } catch (error) {
         console.log(error);
+        openModal("ERRO","Erro ao Atualizar o Contato!",true);
       }
     } else {
       setLoaderState(false);
-      alert("Campo Nome e Celular são Obrigatórios!");
+      openModal("ERRO","Campo NOME e CELULAR são Obrigatórios!",true);
     }
   };
 
@@ -84,6 +113,16 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
 
   return (
     <>
+      <Modal isOpen={openModalState} onClose={closeModal} error={modalError}>
+        <h1>{titleModal}</h1>
+        <div className="contentModal">
+          <p>{textContentModal}</p>
+        </div>
+        <div className="boxButtonModal">
+          <button onClick={closeModal}>OK</button>
+        </div>
+      </Modal>
+
       {show && (
         <S.Button bgcolor={bgcolor} onClick={checkActionButton}>
           {children}

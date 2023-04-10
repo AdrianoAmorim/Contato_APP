@@ -35,5 +35,7 @@ body{
     
 }
 
-
+.no-scroll{
+    overflow:hidden;
+}
 `

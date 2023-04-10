@@ -66,6 +66,7 @@ export const saveContact = async (contact: ContactType)=> {
     }
 }
 
+//ATUALIZA OS DADOS DO CONTATO
 export const updateContact = async(contact:ContactType)=>{
     try {
         const response = await axios.put(`${url_api}/updateContato`,contact);
@@ -79,6 +80,7 @@ export const updateContact = async(contact:ContactType)=>{
     }
 }
 
+//DELETA O CONTATO SELECIONADO
 export const deleteContact = async(id:number)=>{
     try {
         const response = await axios.delete(`${url_api}/deleteContato/${id}`);

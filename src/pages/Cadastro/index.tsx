@@ -7,9 +7,11 @@ import { ContactContext } from "../../contexts/ContactContext";
 import ReactLoading from "react-loading";
 import { getAllCategories } from "../../services/Api";
 import { CategoryType } from "../../types/category";
+import { Modal } from "../../components/Modal";
 
 export const Cadastro = () => {
   const [categoriaState, setCategoriaState] = useState<CategoryType[]>([]);
+ 
   const { setHeaderState, setTitleState, loaderState, setLoaderState } =
     useContext(HeaderContext);
   const {
@@ -73,9 +75,10 @@ export const Cadastro = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-
   return (
     <Main>
+      
+
       {loaderState ? (
         <ReactLoading
           className="paddingLoad"
