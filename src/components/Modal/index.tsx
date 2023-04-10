@@ -14,8 +14,8 @@ export const Modal = ({isOpen,onClose,children,error}:ModalType)=>{
         return null
     }
     return(
-        <S.ModalContainer>
-            <S.ModalContent colorError={error}>
+        <S.ModalContainer >
+            <S.ModalContent colorError={error} className='openModalAnimation'>
                 {children}
             </S.ModalContent>
         </S.ModalContainer>

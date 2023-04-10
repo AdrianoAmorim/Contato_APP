@@ -33,9 +33,23 @@ body{
     padding: 0;
     box-sizing: border-box;
     
+    
 }
 
-.no-scroll{
-    overflow:hidden;
+
+//ANIMACOES GLOBAIS
+.openModalAnimation{
+    animation: openModalAnimation .2s ease-in-out forwards;
 }
+
+@keyframes openModalAnimation{
+    from{
+      opacity: 0;
+      transform: scale(0);
+    }
+    to{
+      opacity:1;
+      transform:scale(1);
+    }
+ }
 `
