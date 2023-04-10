@@ -24,7 +24,21 @@ export const getAllContacts = async (): Promise<ContactHomeType[] |any> => {
 
 }
 
-//SIMULA A CONSULTA DE UM CONTATO, passando o ID POR PARAMETRO
+//RETORNA TODAS AS CATEGORIAS CADASTRADAS
+export const getAllCategories = async (): Promise<CategoryType[] | any> => {
+    try {
+        const response = await axios.get<CategoryType[]>(`${url_api}/categorias`);
+        return response.data
+    } catch (error) {
+        if(error instanceof Error){
+            return error
+        }else{
+            return String(error);
+        }
+    }
+}
+
+//BUSCA UM CONTATO COM O ID PASSADO NO PARAMETRO
 export const getContact = async (id: number): Promise<ContactType | any> => {
     try {
         const response = await axios.get<ContactType>(`${url_api}/contato/${id}`);
@@ -39,9 +53,9 @@ export const getContact = async (id: number): Promise<ContactType | any> => {
 }
 
 //SALVA UM NOVO CONTATO
-export const saveContact = async (contact: ContactType):Promise<ContactType| any> => {
+export const saveContact = async (contact: ContactType)=> {
     try {
-        const response = await axios.post<ContactType>(`${url_api}/cadContato`, contact);
+        const response = await axios.post(`${url_api}/cadContato`, contact);
         return response.data;
     } catch (error) {
         if(error instanceof Error){
@@ -52,11 +66,23 @@ export const saveContact = async (contact: ContactType):Promise<ContactType| any
     }
 }
 
-//RETORNA TODAS AS CATEGORIAS CADASTRADAS
-export const getAllCategories = async (): Promise<CategoryType[] | any> => {
+export const updateContact = async(contact:ContactType)=>{
     try {
-        const response = await axios.get<CategoryType[]>(`${url_api}/categorias`);
+        const response = await axios.put(`${url_api}/updateContato`,contact);
         return response.data
+    } catch (error) {
+        if(error instanceof Error){
+            return error
+        }else{
+            return String(error);
+        }
+    }
+}
+
+export const deleteContact = async(id:number)=>{
+    try {
+        const response = await axios.delete(`${url_api}/deleteContato/${id}`);
+        return response.data;
     } catch (error) {
         if(error instanceof Error){
             return error

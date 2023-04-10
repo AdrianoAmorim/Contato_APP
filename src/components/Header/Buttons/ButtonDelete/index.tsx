@@ -1,6 +1,9 @@
 import { ReactNode, useContext } from "react";
 import { ContactContext } from "../../../../contexts/ContactContext";
 import * as S from "./styled"
+import { deleteContact } from "../../../../services/Api";
+import { HeaderContext } from "../../../../contexts/HeaderContext";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface ButtonProps {
     children: ReactNode;
@@ -9,11 +12,25 @@ interface ButtonProps {
 }
 
 export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
-    const contact = useContext(ContactContext);
+    const {dataContact,resetDataContext} = useContext(ContactContext);
+    const {setLoaderState}  = useContext(HeaderContext);
+    const navigate = useNavigate();
 
-    const cadContact = () => {
-      console.log(contact.dataContact.id);
-      console.log(contact.dataContact.nome);
+    const delContact = async (id:number) => {
+        setLoaderState(true);
+        console.log(id)
+        try {
+            const response = await deleteContact(id);
+            if(response.id > 0){
+                alert("Contato deletado com Sucesso");
+                setLoaderState(false);
+                resetDataContext();
+                navigate("/");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
 
 
@@ -21,7 +38,7 @@ export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
     return (
         <>
             {show &&
-                <S.Button bgcolor={bgcolor} onClick={cadContact}>
+                <S.Button bgcolor={bgcolor} onClick={()=> delContact(dataContact.id)}>
                     {children}
                 </S.Button>
             }

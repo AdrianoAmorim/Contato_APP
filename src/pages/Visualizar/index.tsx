@@ -29,14 +29,13 @@ export const Visualizar = () => {
     btnSave: false,
     btnDelete: true,
     btnBack: true,
-    btnEditar: true,
-    title: "Visualizar",
+    btnEditar: true
   };
 
   useEffect(() => {
-    setLoaderState(true);
     setHeaderState(configHeader);
     setTitleState({ title: "VIZUALIZAR" });
+    setLoaderState(true);
     if (id) {
       getContactSelected(id);
     }
@@ -59,14 +58,13 @@ export const Visualizar = () => {
         setSite(response.site);
         setCategoria(response.categoria.id);
         setNomeCategoria(response.categoria.nome);
+      setLoaderState(false);
       } else {
         alert("Ops! Houve Algum Erro ao Buscar os dados deste Contato!");
         navigate("/");
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoaderState(false);
     }
   };
   return (

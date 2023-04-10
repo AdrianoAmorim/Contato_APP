@@ -31,16 +31,14 @@ export const Home = () => {
         getDataContacts();
     }, [])
 
-
-
     //FAZ A REQUIZIÇÃO DE TODOS OS CONTATOS CADASTRADOS
     const getDataContacts = async () => {
         try {
-            const res = await getAllContacts();
-            validateAllContacts(res);
+            const response = await getAllContacts();
+            validateAllContacts(response);
         } catch (error) {
-            console.log(error)
-            alert("Erro de Comunicação com o servidor! Tente Novamente Mais Tarde.")
+            console.log(error);
+            alert("Erro de Comunicação com o servidor! Tente Novamente Mais Tarde.");
         }
     }
     //CHAMA A TELA DE VISUALIZACAO DO CONTATO PASSANDO O ID DO CONTATO SELECIONADO PELO PARAMETRO uRL
