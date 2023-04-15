@@ -18,7 +18,7 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
   const { setLoaderState } = useContext(HeaderContext);
   const [openModalState, setOpenModalState] = useState(false);
   const [textContentModalState, setContentModalState] = useState("");
-  const [modalError, setModalError] = useState(false);
+  const [modalErrorState, setModalErrorState] = useState(false);
   const [titleModalState, setTitleModalState] = useState("");
   const navigate = useNavigate();
 
@@ -27,9 +27,9 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
     setContentModalState(textContent);
     setTitleModalState(title);
     if (typeErrorModal) {
-      setModalError(true);
+      setModalErrorState(true);
     } else {
-      setModalError(false);
+      setModalErrorState(false);
     }
     setOpenModalState(true);
   };
@@ -108,7 +108,7 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
       <Modal
         isOpen={openModalState}
         onClose={closeModal}
-        typeErrorModal={modalError} 
+        typeErrorModal={modalErrorState} 
         titleModal= {titleModalState}
         textContentModal={textContentModalState}
 
