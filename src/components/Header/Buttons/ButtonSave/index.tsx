@@ -17,39 +17,32 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
   const { dataContact, resetDataContext } = useContext(ContactContext);
   const { setLoaderState } = useContext(HeaderContext);
   const [openModalState, setOpenModalState] = useState(false);
-  const [textContentModal,setContentModal] = useState("");
-  const [modalError,setModalError] = useState(false);
-  const [titleModal,setTitleModal] = useState("");
+  const [textContentModalState, setContentModalState] = useState("");
+  const [modalError, setModalError] = useState(false);
+  const [titleModalState, setTitleModalState] = useState("");
   const navigate = useNavigate();
 
-
-  //CUSTOMIZA O TEXTO DO MODAL
-  const customizeModal = (title:string,textContent:string)=>{
-    setContentModal(textContent);
-    setTitleModal(title);
-  }
-
   //FUNCAO AO ABRIR O MODAL CUSTOMIZA TITULO E MENSAGEM DO CONTEUDO DO MODAL
-  const openModal = (title:string,textContent:string,error?:boolean) => {
-    customizeModal(title,textContent);
-     if(error){
+  const openModal = (title: string, textContent: string, typeErrorModal?: boolean) => {
+    setContentModalState(textContent);
+    setTitleModalState(title);
+    if (typeErrorModal) {
       setModalError(true);
-     } else{
+    } else {
       setModalError(false);
-     }
+    }
     setOpenModalState(true);
-    
   };
 
   //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
-  const closeModal=()=>{
+  const closeModal = () => {
     setLoaderState(false);
     setOpenModalState(false);
-    if(validateField(dataContact)){
+    if (validateField(dataContact)) {
       resetDataContext();
       navigate("/");
     }
-  }
+  };
 
   //CADASTRA UM NOVO USUARIO
   const cadContact = async () => {
@@ -59,17 +52,17 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
       try {
         const response = await saveContact(dataContact);
         if (response.id > 0) {
-          openModal("AVISO","Contato cadastrado com sucesso!",);
+          openModal("AVISO", "Contato cadastrado com sucesso!");
         } else {
           console.log(response);
-          openModal("ERRO","Erro ao Atualizar o Contato!",true);
+          openModal("ERRO","Erro ao cadastrar o Contato!", true);
         }
       } catch (error) {
         console.log(error);
+        openModal("ERRO", `Erro ao cadastrar o Contato! - ${error}`, true);
       }
     } else {
-      setLoaderState(false);
-     openModal("ERRO","Os Campos NOME e CELULAR são obrigatórios!",true);
+      openModal("ERRO", "Os Campos NOME e CELULAR são obrigatórios!", true);
     }
   };
 
@@ -82,15 +75,14 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
       try {
         const response = await updateContact(contact);
         if (response.id > 0) {
-         openModal("AVISO","Contato Atualizado com sucesso!!");
+          openModal("AVISO", "Contato atualizado com sucesso!!");
         }
       } catch (error) {
         console.log(error);
-        openModal("ERRO","Erro ao Atualizar o Contato!",true);
+        openModal("ERRO", `Erro ao atualizar o Contato! - ${error}`, true);
       }
     } else {
-      setLoaderState(false);
-      openModal("ERRO","Campo NOME e CELULAR são Obrigatórios!",true);
+      openModal("ERRO", "Campo NOME e CELULAR são obrigatórios!", true);
     }
   };
 
@@ -113,15 +105,14 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
 
   return (
     <>
-      <Modal isOpen={openModalState} onClose={closeModal} error={modalError}>
-        <h1>{titleModal}</h1>
-        <div className="contentModal">
-          <p>{textContentModal}</p>
-        </div>
-        <div className="boxButtonModal">
-          <button onClick={closeModal}>OK</button>
-        </div>
-      </Modal>
+      <Modal
+        isOpen={openModalState}
+        onClose={closeModal}
+        typeErrorModal={modalError} 
+        titleModal= {titleModalState}
+        textContentModal={textContentModalState}
+
+      />
 
       {show && (
         <S.Button bgcolor={bgcolor} onClick={checkActionButton}>

@@ -13,12 +13,11 @@ interface ButtonProps {
 
 export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
     const {dataContact,resetDataContext} = useContext(ContactContext);
-    const {setLoaderState}  = useContext(HeaderContext);
+    const {setLoaderState,loaderState}  = useContext(HeaderContext);
     const navigate = useNavigate();
 
     const delContact = async (id:number) => {
         setLoaderState(true);
-        console.log(id)
         try {
             const response = await deleteContact(id);
             if(response.id > 0){
@@ -37,6 +36,7 @@ export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
 
     return (
         <>
+        
             {show &&
                 <S.Button bgcolor={bgcolor} onClick={()=> delContact(dataContact.id)}>
                     {children}

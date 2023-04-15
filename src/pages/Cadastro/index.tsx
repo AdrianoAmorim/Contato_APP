@@ -7,11 +7,10 @@ import { ContactContext } from "../../contexts/ContactContext";
 import ReactLoading from "react-loading";
 import { getAllCategories } from "../../services/Api";
 import { CategoryType } from "../../types/category";
-import { Modal } from "../../components/Modal";
 
 export const Cadastro = () => {
   const [categoriaState, setCategoriaState] = useState<CategoryType[]>([]);
- 
+
   const { setHeaderState, setTitleState, loaderState, setLoaderState } =
     useContext(HeaderContext);
   const {
@@ -32,6 +31,7 @@ export const Cadastro = () => {
     btnBack: true,
     btnEditar: false,
   };
+
   //Seta na primeira montagem do component os botoes e verifica qual funcao do componente (editar ou cadastrar)
   useEffect(() => {
     setHeaderState(configHeader);
@@ -40,27 +40,24 @@ export const Cadastro = () => {
     } else {
       setTitleState({ title: "NOVO CONTATO" });
     }
-  }, []);
-
-  //CARREGA O SELECT DE CATEGORIA DINAMICAMENTE
-  useEffect(() => {
-    const getCategory = async () => {
-      setLoaderState(true);
-      try {
-        const response = await getAllCategories();
-        if (response.aviso) {
-          alert(response.msg);
-        } else {
-          setCategoriaState(response);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoaderState(false);
-      }
-    };
     getCategory();
   }, []);
+
+  //PEGA TODAS AS CATEGORIAS CADASTRADAS
+  const getCategory = async () => {
+    setLoaderState(true);
+    try {
+      const response = await getAllCategories();
+      if (response.aviso) {
+        alert(response.msg);
+      } else {
+        setCategoriaState(response);
+        setLoaderState(false)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //REMOVE AS MASCARAS DOS CAMPOS DE TELEFONE
   const removeMaskTel = (e: ChangeEvent<HTMLInputElement>) => {
@@ -75,10 +72,10 @@ export const Cadastro = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+
+
   return (
     <Main>
-      
-
       {loaderState ? (
         <ReactLoading
           className="paddingLoad"
@@ -92,7 +89,6 @@ export const Cadastro = () => {
           <S.BoxAvatar>
             <img src={avatar} />
           </S.BoxAvatar>
-
           <S.FormCad onSubmit={handleSubmit}>
             <S.BoxInpCad>
               <S.InpCad

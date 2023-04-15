@@ -75,7 +75,7 @@ export const Home = () => {
                 <S.BoxCardContacts>
                     {
                       allContacts.map((contact, i) =>
-                            <S.CardContacts key={i} onClick={() => viewContact(contact.id)}>
+                            <S.CardContacts key={i} onClick={() => viewContact(contact.id)} className="listContactAnimation">
                                 <PersonIcon className="iconContact" color="var(--bg-header)" width={20} height={20} />
                                 <S.NameContacts>
                                     {contact.nome}

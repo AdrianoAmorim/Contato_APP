@@ -35,11 +35,13 @@ body{
     
     
 }
-
-
 //ANIMACOES GLOBAIS
 .openModalAnimation{
     animation: openModalAnimation .2s ease-in-out forwards;
+}
+.listContactAnimation{
+    animation: listContactAnimation .3s ease-in  forwards;
+    
 }
 
 @keyframes openModalAnimation{
@@ -50,6 +52,17 @@ body{
     to{
       opacity:1;
       transform:scale(1);
+    }
+ }
+
+ @keyframes listContactAnimation {
+    from{
+        opacity: 0;
+        transform: translateX(-800px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
     }
  }
 `
