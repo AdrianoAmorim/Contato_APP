@@ -3,7 +3,7 @@ import { ContactContext } from "../../../../contexts/ContactContext";
 import * as S from "./styled";
 import { deleteContact } from "../../../../services/Api";
 import { HeaderContext } from "../../../../contexts/HeaderContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "../../../Modal";
 
 interface ButtonProps {
@@ -19,17 +19,30 @@ export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
   const [textContentModalState, setContentModalState] = useState("");
   const [titleModalState, setTitleModalState] = useState("");
   const [modalErrorState, setModalErrorState] = useState(false);
+  const [controlBtnConfirmModal,setControlBtnConfirmModal] = useState(false);
+  const [typeDeleteModalState, setTypeDeleteModalState] = useState(false);
   const navigate = useNavigate();
 
   //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
-  const closeModal = () => {
-    setLoaderState(false);
-    setOpenModalState(false);
-    navigate("/");
+  const confirmModal = () => {
+    if(controlBtnConfirmModal){
+      setOpenModalState(false);
+    }else{
+      delContact(dataContact.id);
+    }
   };
 
- //FUNCAO AO ABRIR O MODAL CUSTOMIZA TITULO E MENSAGEM DO CONTEUDO DO MODAL
- const openModal = (title: string, textContent: string, typeErrorModal?: boolean) => {
+  const cancelModal = () => {
+    setOpenModalState(false);
+  };
+
+  //CUSTOMIZA O MODAL E ABRE ELE
+  const customizeModal = (
+    title: string,
+    textContent: string,
+    typeErrorModal?: boolean,
+    typeDeleteModal?: boolean
+  ) => {
     setContentModalState(textContent);
     setTitleModalState(title);
     if (typeErrorModal) {
@@ -37,20 +50,42 @@ export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
     } else {
       setModalErrorState(false);
     }
+
+    if (typeDeleteModal) {
+      setTypeDeleteModalState(true);
+    } else {
+      setTypeDeleteModalState(false);
+    }
+
     setOpenModalState(true);
   };
 
+  //FUNCAO para abrir o modal e personalizar seu conteudo
+  const openModal = () => {
+    customizeModal(
+      "AVISO",
+      "DESEJA REALMENTE DELETAR ESTE CONTATO?",
+      true,
+      true
+    );
+  };
+
+  //FUNÇÃO PARA DELETAR O CONTATO
   const delContact = async (id: number) => {
     setLoaderState(true);
+    setOpenModalState(false);
+    setControlBtnConfirmModal(false);
     try {
       const response = await deleteContact(id);
       if (response.id > 0) {
-        openModal("AVISO","Contato deletado com Sucesso");
+        setLoaderState(false);
         resetDataContext();
+        navigate("/");
       }
     } catch (error) {
-        console.log(error);
-        openModal("ERRO",`Houve um erro ao deletar o contato: -${error}`,true);
+      console.log(error);
+      setControlBtnConfirmModal(true);
+      customizeModal("ERRO","Houve um erro ao deletar o Contato!",true,false);
     }
   };
 
@@ -60,12 +95,14 @@ export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
         isOpen={openModalState}
         titleModal={titleModalState}
         textContentModal={textContentModalState}
-        onClose={closeModal}
+        onConfirm={confirmModal}
+        onCancel={cancelModal}
         typeErrorModal={modalErrorState}
+        typeDeleteModal={typeDeleteModalState}
       />
 
       {show && (
-        <S.Button bgcolor={bgcolor} onClick={() => delContact(dataContact.id)}>
+        <S.Button bgcolor={bgcolor} onClick={openModal}>
           {children}
         </S.Button>
       )}

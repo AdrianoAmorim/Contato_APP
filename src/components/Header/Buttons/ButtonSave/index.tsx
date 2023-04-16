@@ -35,7 +35,7 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
   };
 
   //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
-  const closeModal = () => {
+  const confirmModal = () => {
     setLoaderState(false);
     setOpenModalState(false);
     if (validateField(dataContact)) {
@@ -107,11 +107,10 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
     <>
       <Modal
         isOpen={openModalState}
-        onClose={closeModal}
+        onConfirm={confirmModal}
         typeErrorModal={modalErrorState} 
         titleModal= {titleModalState}
         textContentModal={textContentModalState}
-
       />
 
       {show && (

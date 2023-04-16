@@ -53,6 +53,13 @@ export const ModalContent = styled.div<StyleModalType>`
     }
 
     & button:hover {
+      background-color: ${props => props.typeErrorModal ? "#d50000": "#e17100"}  ;
+    }
+    & #btnCancelModal{
+      margin-right:2rem;
+      padding: 0.3rem 2rem;
+      background-color:var(--bg-button);
+    }& #btnCancelModal:hover{
       background-color: #e17100;
     }
   }
