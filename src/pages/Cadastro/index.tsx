@@ -7,10 +7,14 @@ import { ContactContext } from "../../contexts/ContactContext";
 import ReactLoading from "react-loading";
 import { getAllCategories } from "../../services/Api";
 import { CategoryType } from "../../types/category";
+import { Modal } from "../../components/Modal";
 
 export const Cadastro = () => {
   const [categoriaState, setCategoriaState] = useState<CategoryType[]>([]);
-
+  const [openModalState, setOpenModalState] = useState(false);
+  const [textContentModalState, setContentModalState] = useState("");
+  const [modalErrorState, setModalErrorState] = useState(false);
+  const [titleModalState, setTitleModalState] = useState("");
   const { setHeaderState, setTitleState, loaderState, setLoaderState } =
     useContext(HeaderContext);
   const {
@@ -49,13 +53,14 @@ export const Cadastro = () => {
     try {
       const response = await getAllCategories();
       if (response.aviso) {
-        alert(response.msg);
+       customizeModal("AVISO",response.msg,false,false);
       } else {
         setCategoriaState(response);
-        setLoaderState(false)
+        setLoaderState(false);
       }
     } catch (error) {
       console.log(error);
+      customizeModal("ERRO",`Houve um erro ao listar as categorias: ${error}`,true,false);
     }
   };
 
@@ -73,6 +78,28 @@ export const Cadastro = () => {
     e.preventDefault();
   };
 
+   //CUSTOMIZA O MODAL E ABRE ELE
+   const customizeModal = (
+    title: string,
+    textContent: string,
+    typeErrorModal?: boolean,
+    typeDeleteModal?: boolean
+  ) => {
+    setContentModalState(textContent);
+    setTitleModalState(title);
+    if (typeErrorModal) {
+      setModalErrorState(true);
+    } else {
+      setModalErrorState(false);
+    }
+
+    setOpenModalState(true);
+  };
+
+   //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
+  const confirmModal = () => {
+    setOpenModalState(false);
+  };
 
   return (
     <Main>
@@ -86,6 +113,14 @@ export const Cadastro = () => {
         />
       ) : (
         <>
+          <Modal
+            isOpen={openModalState}
+            onConfirm={confirmModal}
+            typeErrorModal={modalErrorState}
+            titleModal={titleModalState}
+            textContentModal={textContentModalState}
+          />
+
           <S.BoxAvatar>
             <img src={avatar} />
           </S.BoxAvatar>

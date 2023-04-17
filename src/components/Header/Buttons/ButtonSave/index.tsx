@@ -34,6 +34,7 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
     setOpenModalState(true);
   };
 
+  
   //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
   const confirmModal = () => {
     setLoaderState(false);
