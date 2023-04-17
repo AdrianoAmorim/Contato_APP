@@ -41,9 +41,19 @@ body{
 }
 .listContactAnimation{
     animation: listContactAnimation .3s ease-in  forwards;
-    
+}
+.fadeIn{
+    animation: fadeIn .3s ease-in-out forwards;
 }
 
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 @keyframes openModalAnimation{
     from{
       opacity: 0;

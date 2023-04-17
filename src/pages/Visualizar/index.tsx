@@ -78,7 +78,7 @@ export const Visualizar = () => {
           color="var(--bg-button)"
         />
       ) : (
-        <S.BoxInfoContact>
+        <S.BoxInfoContact className="fadeIn">
           <S.BoxName>
             <h1>
               {contact.nome} {contact.sobrenome}

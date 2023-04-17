@@ -31,7 +31,7 @@ export const ButtonDelete = ({ children, show, bgcolor }: ButtonProps) => {
       delContact(dataContact.id);
     }
   };
-
+  //FUNCAO DE CANCELAR DO MODAL
   const cancelModal = () => {
     setOpenModalState(false);
   };
