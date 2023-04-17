@@ -54,9 +54,6 @@ export const ButtonSave = ({ children, show, bgcolor }: ButtonProps) => {
         const response = await saveContact(dataContact);
         if (response.id > 0) {
           openModal("AVISO", "Contato cadastrado com sucesso!");
-        } else {
-          console.log(response);
-          openModal("ERRO","Erro ao cadastrar o Contato!", true);
         }
       } catch (error) {
         console.log(error);

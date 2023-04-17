@@ -53,14 +53,20 @@ export const Cadastro = () => {
     try {
       const response = await getAllCategories();
       if (response.aviso) {
-       customizeModal("AVISO",response.msg,false,false);
+        customizeModal("AVISO", response.msg, false, false);
+        //redirecionar para a tela de configuracoes
       } else {
         setCategoriaState(response);
         setLoaderState(false);
       }
     } catch (error) {
       console.log(error);
-      customizeModal("ERRO",`Houve um erro ao listar as categorias: ${error}`,true,false);
+      customizeModal(
+        "ERRO",
+        `Houve um erro ao listar as categorias: ${error}`,
+        true,
+        false
+      );
     }
   };
 
@@ -78,8 +84,8 @@ export const Cadastro = () => {
     e.preventDefault();
   };
 
-   //CUSTOMIZA O MODAL E ABRE ELE
-   const customizeModal = (
+  //CUSTOMIZA O MODAL E ABRE ELE
+  const customizeModal = (
     title: string,
     textContent: string,
     typeErrorModal?: boolean,
@@ -96,7 +102,7 @@ export const Cadastro = () => {
     setOpenModalState(true);
   };
 
-   //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
+  //FUNCAO AO CLICAR NO BOTAO (OK) DO MODAL
   const confirmModal = () => {
     setOpenModalState(false);
   };
@@ -121,95 +127,101 @@ export const Cadastro = () => {
             textContentModal={textContentModalState}
           />
 
-          <S.BoxAvatar>
-            <img src={avatar} />
-          </S.BoxAvatar>
-          <S.FormCad onSubmit={handleSubmit}>
-            <S.BoxInpCad>
-              <S.InpCad
-                type="text"
-                value={dataContact.nome}
-                name="nome"
-                placeholder="Nome"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setNome(e.target.value)
-                }
-              />
-              <S.InpCad
-                type="text"
-                value={dataContact.sobrenome}
-                name="sobrenome"
-                placeholder="Sobrenome"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setSobreNome(e.target.value)
-                }
-              />
-            </S.BoxInpCad>
+          {categoriaState.length > 0 ? (
+            <>
+              <S.BoxAvatar>
+                <img src={avatar} />
+              </S.BoxAvatar>
+              <S.FormCad onSubmit={handleSubmit}>
+                <S.BoxInpCad>
+                  <S.InpCad
+                    type="text"
+                    value={dataContact.nome}
+                    name="nome"
+                    placeholder="Nome"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setNome(e.target.value)
+                    }
+                  />
+                  <S.InpCad
+                    type="text"
+                    value={dataContact.sobrenome}
+                    name="sobrenome"
+                    placeholder="Sobrenome"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setSobreNome(e.target.value)
+                    }
+                  />
+                </S.BoxInpCad>
 
-            <S.BoxInpCad>
-              <S.InpCad
-                type="text"
-                value={dataContact.site}
-                name="site"
-                placeholder="Site"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setSite(e.target.value)
-                }
-              />
-              <S.InpCad
-                type="email"
-                value={dataContact.email}
-                name="email"
-                placeholder="E-mail"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value)
-                }
-              />
-            </S.BoxInpCad>
+                <S.BoxInpCad>
+                  <S.InpCad
+                    type="text"
+                    value={dataContact.site}
+                    name="site"
+                    placeholder="Site"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setSite(e.target.value)
+                    }
+                  />
+                  <S.InpCad
+                    type="email"
+                    value={dataContact.email}
+                    name="email"
+                    placeholder="E-mail"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setEmail(e.target.value)
+                    }
+                  />
+                </S.BoxInpCad>
 
-            <S.BoxInpCad>
-              <S.InpCadMask
-                type="tel"
-                name="telCelular"
-                mask={"(99) 99999-9999"}
-                maskChar="_"
-                value={dataContact.celular}
-                placeholder="Celular"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  removeMaskTel(e)
-                }
-              />
+                <S.BoxInpCad>
+                  <S.InpCadMask
+                    type="tel"
+                    name="telCelular"
+                    mask={"(99) 99999-9999"}
+                    maskChar="_"
+                    value={dataContact.celular}
+                    placeholder="Celular"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      removeMaskTel(e)
+                    }
+                  />
 
-              <S.InpCadMask
-                type="tel"
-                name="telFixo"
-                mask={"(99) 9999-9999"}
-                maskChar="_"
-                value={dataContact.fixo}
-                placeholder="Fixo"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  removeMaskTel(e)
-                }
-              />
-            </S.BoxInpCad>
+                  <S.InpCadMask
+                    type="tel"
+                    name="telFixo"
+                    mask={"(99) 9999-9999"}
+                    maskChar="_"
+                    value={dataContact.fixo}
+                    placeholder="Fixo"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      removeMaskTel(e)
+                    }
+                  />
+                </S.BoxInpCad>
 
-            <S.BoxInpCad>
-              <S.SlcCad
-                width="19.9rem"
-                name="categoria"
-                value={dataContact.categoria}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setCategoria(parseInt(e.target.value))
-                }
-              >
-                {categoriaState.map((categoria) => (
-                  <option key={categoria.id} value={categoria.id}>
-                    {categoria.nome}
-                  </option>
-                ))}
-              </S.SlcCad>
-            </S.BoxInpCad>
-          </S.FormCad>
+                <S.BoxInpCad>
+                  <S.SlcCad
+                    width="19.9rem"
+                    name="categoria"
+                    value={dataContact.categoria}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setCategoria(parseInt(e.target.value))
+                    }
+                  >
+                    {categoriaState.map((categoria) => (
+                      <option key={categoria.id} value={categoria.id}>
+                        {categoria.nome}
+                      </option>
+                    ))}
+                  </S.SlcCad>
+                </S.BoxInpCad>
+              </S.FormCad>
+            </>
+          ) : (
+            <p>Nenhuma Categoria cadastrada, REDIRECINANDO....</p>
+          )}
         </>
       )}
     </Main>
