@@ -16,6 +16,7 @@ export const Cadastro = () => {
   const [textContentModalState, setContentModalState] = useState("");
   const [modalErrorState, setModalErrorState] = useState(false);
   const [titleModalState, setTitleModalState] = useState("");
+  const [textErrorData,setTextErrorData] = useState("");
   const { setHeaderState, setTitleState, loaderState, setLoaderState } =
     useContext(HeaderContext);
   const {
@@ -54,7 +55,8 @@ export const Cadastro = () => {
     try {
       const response = await getAllCategories();
       if (response.aviso) {
-        customizeModal("AVISO", response.msg, false, false);
+        setTextErrorData(response.msg);
+        setLoaderState(false);
         //redirecionar para a tela de configuracoes
       } else {
         setCategoriaState(response);
@@ -127,7 +129,7 @@ export const Cadastro = () => {
             titleModal={titleModalState}
             textContentModal={textContentModalState}
           />
-
+          
           {categoriaState.length > 0 ? (
             <>
               <S.BoxAvatar>
@@ -221,7 +223,7 @@ export const Cadastro = () => {
               </S.FormCad>
             </>
           ) : (
-           <ErrorData/>
+           <ErrorData textError={textErrorData} />
           )}
         </>
       )}

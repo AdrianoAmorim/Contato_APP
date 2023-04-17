@@ -1,7 +1,11 @@
 import imgError from "../../assets/img/img_dataError.png"
 import * as S from "./styled"
 
-export const ErrorData = ()=>{
+type ErrorDataType = {
+    textError:string
+}
+
+export const ErrorData = ({textError}:ErrorDataType)=>{
 
     return(
         <S.BoxContainer>
@@ -10,7 +14,7 @@ export const ErrorData = ()=>{
             </S.BoxImg>
             <S.BoxText>
                 <span>ERROR</span>
-                <span>Dados não Encontrado</span>
+                <span>{textError}</span>
             </S.BoxText>
         </S.BoxContainer>
     )
