@@ -8,6 +8,7 @@ import ReactLoading from "react-loading";
 import { getAllCategories } from "../../services/Api";
 import { CategoryType } from "../../types/category";
 import { Modal } from "../../components/Modal";
+import { ErrorData } from "../ErrorData";
 
 export const Cadastro = () => {
   const [categoriaState, setCategoriaState] = useState<CategoryType[]>([]);
@@ -220,7 +221,7 @@ export const Cadastro = () => {
               </S.FormCad>
             </>
           ) : (
-            <p>Nenhuma Categoria cadastrada, REDIRECINANDO....</p>
+           <ErrorData/>
           )}
         </>
       )}
