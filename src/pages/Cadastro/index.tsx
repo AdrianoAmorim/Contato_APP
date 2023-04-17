@@ -6,7 +6,7 @@ import { HeaderContext } from "../../contexts/HeaderContext";
 import { ContactContext } from "../../contexts/ContactContext";
 import ReactLoading from "react-loading";
 import { getAllCategories } from "../../services/Api";
-import { CategoryType } from "../../types/category";
+import { CategoryType } from "../../types/CategoryType";
 import { Modal } from "../../components/Modal";
 import { ErrorData } from "../ErrorData";
 

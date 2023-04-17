@@ -3,6 +3,7 @@ import App from "../App";
 import { Cadastro } from "../pages/Cadastro";
 import { Visualizar } from "../pages/Visualizar";
 import { Home } from "../pages/Home";
+import { Configuracao } from "../pages/Configuracao";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/visualizar/:id",
           element: <Visualizar />
+      },
+      {
+        path: "/configuracao",
+          element: <Configuracao />
       }
     ]
   }

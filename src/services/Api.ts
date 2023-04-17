@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ContactHomeType, ContactType } from "../types/ContactType";
-import { CategoryType } from "../types/category";
+import { CategoryType } from "../types/CategoryType";
 
 const url_api = "http://localhost:4041";
 

@@ -1,35 +1,22 @@
 import { ReactNode, useContext } from "react";
-import { ContactContext } from "../../../../contexts/ContactContext";
-import * as S from "./styled"
+import * as S from "./styled";
+import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
-    children: ReactNode;
-    show?: boolean;
-    bgcolor?: string;
+  children: ReactNode;
+  show?: boolean;
+  bgcolor?: string;
 }
 
 export const ButtonConfig = ({ children, show, bgcolor }: ButtonProps) => {
-    const contact = useContext(ContactContext);
-
-    const cadContact = () => {
-        if(contact.dataContact){
-            console.log(contact.dataContact)
-        }else{
-            console.log("vazio")
-        }
-    }
-
-
-
-    return (
-        <>
-            {show &&
-                <S.Button bgcolor={bgcolor} onClick={cadContact}>
-                    {children}
-                </S.Button>
-            }
-        </>
-
-
-    )
-}
+  const navigate = useNavigate();
+  return (
+    <>
+      {show && (
+        <S.Button bgcolor={bgcolor} onClick={() => navigate("/configuracao")}>
+          {children}
+        </S.Button>
+      )}
+    </>
+  );
+};
