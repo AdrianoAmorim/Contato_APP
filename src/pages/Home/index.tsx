@@ -1,5 +1,8 @@
-
-import { MagnifyingGlassIcon, PersonIcon, PlusIcon } from "@radix-ui/react-icons";
+import {
+  MagnifyingGlassIcon,
+  PersonIcon,
+  PlusIcon,
+} from "@radix-ui/react-icons";
 import { useContext, useEffect, useState } from "react";
 import ReactLoading from "react-loading";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,90 +11,116 @@ import { HeaderContext } from "../../contexts/HeaderContext";
 import { getAllContacts } from "../../services/Api";
 import { ContactHomeType } from "../../types/ContactType";
 import * as S from "./styled";
-import { Modal } from "../../components/Modal";
+import { ErrorData } from "../ErrorData";
 
 export const Home = () => {
-    const { setHeaderState, setTitleState, setLoaderState, loaderState } = useContext(HeaderContext);
-    const [allContacts, setAllContacts] = useState<ContactHomeType[]>([]);
+  const { setHeaderState, setTitleState, setLoaderState, loaderState } =useContext(HeaderContext);
+  const [allContacts, setAllContacts] = useState<ContactHomeType[]>([]);
+  const [textErrorData, setTextErrorData] = useState("");
+  const navigate = useNavigate();
+
+  //CONFIGURA OS BOTOES DO HEADER
+  const configHeader = {
+    btnConfig: true,
+    btnSave: false,
+    btnDelete: false,
+    btnBack: false,
+    btnEditar: false,
+  };
+
+  //SETA A CONFIGURACOES DOS BOTOES NO CONTEXT DO HEADER
+  useEffect(() => {
+    setHeaderState(configHeader);
+    setTitleState({ title: "CONTATOS" });
+    setLoaderState(true);
+    getDataContacts();
+  }, []);
+
+  //FAZ A REQUIZIÇÃO DE TODOS OS CONTATOS CADASTRADOS
+  const getDataContacts = async () => {
     
-    const navigate = useNavigate();
-
-    //CONFIGURA OS BOTOES DO HEADER
-    const configHeader = {
-        btnConfig: true,
-        btnSave: false,
-        btnDelete: false,
-        btnBack: false,
-        btnEditar: false,
-    };
-
-    //SETA A CONFIGURACOES DOS BOTOES NO CONTEXT DO HEADER    
-    useEffect(() => {
-        setHeaderState(configHeader);
-        setTitleState({ title: "CONTATOS" });
-        setLoaderState(true);
-        getDataContacts();
-    }, [])
-
-    //FAZ A REQUIZIÇÃO DE TODOS OS CONTATOS CADASTRADOS
-    const getDataContacts = async () => {
-        try {
-            const response = await getAllContacts();
-            validateAllContacts(response);
-        } catch (error) {
-            console.log(error);
-            alert("Erro de Comunicação com o servidor! Tente Novamente Mais Tarde.");
-        }
+    try {
+      const response = await getAllContacts();
+      if (response.aviso) {
+        setTextErrorData(response.msg);
+        setLoaderState(false);
+      } else {
+        validateAllContacts(response);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Erro de Comunicação com o servidor! Tente Novamente Mais Tarde.");
     }
-    //CHAMA A TELA DE VISUALIZACAO DO CONTATO PASSANDO O ID DO CONTATO SELECIONADO PELO PARAMETRO uRL
-    const viewContact = (id: number) => {
-        navigate(`/visualizar/${id}`);
+  };
+  //CHAMA A TELA DE VISUALIZACAO DO CONTATO PASSANDO O ID DO CONTATO SELECIONADO PELO PARAMETRO uRL
+  const viewContact = (id: number) => {
+    navigate(`/visualizar/${id}`);
+  };
+
+  //VALIDAR COM OS TRATAMENTOS DE ERROS
+  const validateAllContacts = (res: ContactHomeType[] | any) => {
+    if (res.response && res.response.data) {
+      if (res.response.data.error) {
+        alert(`Error: ${res.response.data.msg}`);
+      }
+    } else {
+      setAllContacts(res);
+      setLoaderState(false);
     }
+  };
 
-    //VALIDAR COM OS TRATAMENTOS DE ERROS
-    const validateAllContacts = (res: ContactHomeType[] | any) => {
-    
-        if (res.response && res.response.data) {
-            if(res.response.data.error){
-                alert(`Error: ${res.response.data.msg}`)
-            }
-        }else{
-            setLoaderState(false);
-            setAllContacts(res);
-        }
-
-    }
-
-    return (
-        <Main>
-
-            <S.BoxInpSearch>
+  return (
+    <Main>
+      {loaderState ? (
+        <ReactLoading
+          className="paddingLoad"
+          type="spinningBubbles"
+          height="50px"
+          width="50px"
+          color="var(--bg-button)"
+        />
+      ) : (
+        <>
+          {allContacts.length > 0 ? (
+            <>
+              <S.BoxInpSearch className="fadeIn">
                 <S.InpSearch type="search" placeholder="Buscar Contatos" />
-                <MagnifyingGlassIcon id="iconSearch" color="var(--bg-header)" width={22} height={22} />
-            </S.BoxInpSearch>
+                <MagnifyingGlassIcon
+                  id="iconSearch"
+                  color="var(--bg-header)"
+                  width={22}
+                  height={22}
+                />
+              </S.BoxInpSearch>
+              <S.BoxCardContacts>
+                {allContacts.map((contact, i) => (
+                  <S.CardContacts
+                    key={i}
+                    onClick={() => viewContact(contact.id)}
+                    className="listContactAnimation"
+                  >
+                    <PersonIcon
+                      className="iconContact"
+                      color="var(--bg-header)"
+                      width={20}
+                      height={20}
+                    />
+                    <S.NameContacts>{contact.nome}</S.NameContacts>
+                  </S.CardContacts>
+                ))}
+              </S.BoxCardContacts>
+            </>
+          ) : (
+            <ErrorData textError={textErrorData} />
+          )}
+        </>
+      )}
 
-
-            {loaderState ? <ReactLoading className="paddingLoad" type="spinningBubbles" height='50px' width='50px' color="var(--bg-button)" /> :
-                <S.BoxCardContacts>
-                    {
-                      allContacts.map((contact, i) =>
-                            <S.CardContacts key={i} onClick={() => viewContact(contact.id)} className="listContactAnimation">
-                                <PersonIcon className="iconContact" color="var(--bg-header)" width={20} height={20} />
-                                <S.NameContacts>
-                                    {contact.nome}
-                                </S.NameContacts>
-                            </S.CardContacts>
-                        )
-                       
-                    }
-                </S.BoxCardContacts>
-            }
-
-            <Link to={`/cadastrar`}>
-                <S.BtnCadastrar>
-                    <PlusIcon width={20} height={20} color="#FFF" />
-                </S.BtnCadastrar>
-            </Link>
-        </Main>
-    )
-}
+      <Link to={`/cadastrar`}>
+        <S.BtnCadastrar>
+          <PlusIcon width={20} height={20} color="#FFF" />
+        </S.BtnCadastrar>
+      </Link>
+    </Main>
+  );
+};

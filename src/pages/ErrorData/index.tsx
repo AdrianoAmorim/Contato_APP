@@ -13,7 +13,6 @@ export const ErrorData = ({textError}:ErrorDataType)=>{
                 <img src={imgError} alt="Imagem de Error sem dados"/>
             </S.BoxImg>
             <S.BoxText>
-                <span>ERROR</span>
                 <span>{textError}</span>
             </S.BoxText>
         </S.BoxContainer>
