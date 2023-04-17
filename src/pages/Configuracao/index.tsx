@@ -4,7 +4,7 @@ import { HeaderContext } from "../../contexts/HeaderContext";
 import * as S from "./styled"
 
 export const Configuracao = ()=>{
-    const {headerState,setHeaderState,titleState,setTitleState}  = useContext(HeaderContext);
+    const {setHeaderState,setTitleState}  = useContext(HeaderContext);
 
     const configHeader = {
         btnConfig: false,

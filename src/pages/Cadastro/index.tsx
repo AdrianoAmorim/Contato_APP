@@ -9,6 +9,7 @@ import { getAllCategories } from "../../services/Api";
 import { CategoryType } from "../../types/CategoryType";
 import { Modal } from "../../components/Modal";
 import { ErrorData } from "../ErrorData";
+import { useNavigate } from "react-router-dom";
 
 export const Cadastro = () => {
   const [categoriaState, setCategoriaState] = useState<CategoryType[]>([]);
@@ -17,6 +18,7 @@ export const Cadastro = () => {
   const [modalErrorState, setModalErrorState] = useState(false);
   const [titleModalState, setTitleModalState] = useState("");
   const [textErrorData,setTextErrorData] = useState("");
+  const navigate = useNavigate();
   const { setHeaderState, setTitleState, loaderState, setLoaderState } =
     useContext(HeaderContext);
   const {
@@ -57,7 +59,9 @@ export const Cadastro = () => {
       if (response.aviso) {
         setTextErrorData(response.msg);
         setLoaderState(false);
-        //redirecionar para a tela de configuracoes
+        setTimeout(() => {
+          navigate("/configuracao");
+        }, 2000);
       } else {
         setCategoriaState(response);
         setLoaderState(false);
