@@ -27,7 +27,6 @@ body{
     background-color: var(--background);
 }
 
-
 *{
     margin: 0;
     padding: 0;

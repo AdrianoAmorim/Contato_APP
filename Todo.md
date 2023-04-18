@@ -1,8 +1,6 @@
 ## GERAL
 
-1- Criar uma tela para quando nao tem contatos para exibir
-
-2- Tela de Erro de acesso de rotas que nao existe
+1- Tela de Erro de acesso de rotas que nao existe
 
 ## TELA HOME
 
