@@ -27,7 +27,7 @@ export const LabelDarkTheme = styled.label`
     transition: all 0.2s ease-in-out;
   }
   &:hover .checkBox {
-    background-color: var(--border-input);
+    border: 2px solid #224444;
   }
   & input:checked ~ .checkBox {
     background-color: var(--bg-button);
