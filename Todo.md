@@ -20,4 +20,8 @@
 
 ## TELA CONFIG
 
-- falta implementar ela
+- implementar o cadastro da categoria
+
+- implementar a troca de tema
+
+- tratar erros

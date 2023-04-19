@@ -24,20 +24,6 @@ export const getAllContacts = async (): Promise<ContactHomeType[] |any> => {
 
 }
 
-//RETORNA TODAS AS CATEGORIAS CADASTRADAS
-export const getAllCategories = async (): Promise<CategoryType[] | any> => {
-    try {
-        const response = await axios.get<CategoryType[]>(`${url_api}/categorias`);
-        return response.data
-    } catch (error) {
-        if(error instanceof Error){
-            return error
-        }else{
-            return String(error);
-        }
-    }
-}
-
 //BUSCA UM CONTATO COM O ID PASSADO NO PARAMETRO
 export const getContact = async (id: number): Promise<ContactType | any> => {
     try {
@@ -92,4 +78,33 @@ export const deleteContact = async(id:number)=>{
             return String(error);
         }
     }
+}
+
+//RETORNA TODAS AS CATEGORIAS CADASTRADAS
+export const getAllCategories = async (): Promise<CategoryType[] | any> => {
+    try {
+        const response = await axios.get<CategoryType[]>(`${url_api}/categorias`);
+        return response.data
+    } catch (error) {
+        if(error instanceof Error){
+            return error
+        }else{
+            return String(error);
+        }
+    }
+}
+
+//SALVA A CATEGORIA QUE O CONTATO IRA PERTENCER
+export const saveCategoria = async (nome: string)=>{
+
+        try {
+            const response = await axios.post(`${url_api}/cadCategoria`,{categoria:nome});
+            return response.data
+        } catch (error) {
+            if(error instanceof Error){
+                return error
+            }else{
+                return String(error);
+            }
+        }
 }

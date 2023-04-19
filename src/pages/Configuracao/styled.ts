@@ -68,6 +68,7 @@ export const BoxInpCadCategoria = styled.div`
   display: flex;
   gap: 2rem;
   width: 100%;
+  align-items: center;
 `;
 export const TitleCadCategoria = styled.span`
   font-size: 1.6rem;
@@ -94,5 +95,6 @@ export const BtnCadCategoria = styled.button`
   border-radius: 5px;
   background-color: var(--bg-button);
   cursor: pointer;
-  width: 40px;
+  width: 30px;
+  height: 30px;
 `;
