@@ -136,10 +136,10 @@ export const Cadastro = () => {
           
           {categoriaState.length > 0 ? (
             <>
-              <S.BoxAvatar>
+              <S.BoxAvatar className="fadeIn">
                 <img src={avatar} />
               </S.BoxAvatar>
-              <S.FormCad onSubmit={handleSubmit}>
+              <S.FormCad onSubmit={handleSubmit} className="fadeIn">
                 <S.BoxInpCad>
                   <S.InpCad
                     type="text"

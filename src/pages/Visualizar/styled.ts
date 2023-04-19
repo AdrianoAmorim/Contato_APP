@@ -55,7 +55,7 @@ export const BoxInfo = styled.div`
         width: 100%;
         margin-left: .1rem;
         .item{
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: normal;
             margin-bottom: 1rem;
             padding-bottom: .2rem;
