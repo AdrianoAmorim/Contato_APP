@@ -8,11 +8,7 @@ const url_api = "http://localhost:4041";
 export const getAllContacts = async (): Promise<ContactHomeType[] |any> => {
     try {
         const response = await axios.get<ContactHomeType[]>(`${url_api}/contatos`)
-        .catch((error)=>{
-            return error
-        })
         return response.data;
-
     } catch (error) {
         if(error instanceof Error){
             return error
@@ -24,6 +20,22 @@ export const getAllContacts = async (): Promise<ContactHomeType[] |any> => {
 
 }
 
+export const getContactsFind = async (nome:string): Promise<ContactHomeType[] |any>=>{
+    try {
+        const response = await axios.get<ContactHomeType[]>(`${url_api}/contatos/find`,{
+            params:{
+                nome:nome
+            }
+        });
+        return response.data
+    } catch (error) {
+        if(error instanceof Error){
+            return error
+        }else{
+            return String(error);
+        }
+    }
+}
 //BUSCA UM CONTATO COM O ID PASSADO NO PARAMETRO
 export const getContact = async (id: number): Promise<ContactType | any> => {
     try {

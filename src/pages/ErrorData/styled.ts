@@ -27,3 +27,16 @@ export const BoxText = styled.div`
     text-align: center;
   }
 `;
+export const BoxOptionExit = styled.div`
+  display: flex;
+  justify-content: center;
+
+`
+export const LinkExit = styled.span`
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover,&:active{
+    color: var(--bg-header)
+  }
+`

@@ -4,8 +4,8 @@
 
 ## TELA HOME
 
-1- Criar no backend e no front, busca pelo contato
-
+1- Criar no backend e no front, busca pelo contato(ok)
+- Tratar erros na busca referente a campo vazio
 ## TELA DE CADASTRO
 
 1-Melhorar o Layout do select (o popup)

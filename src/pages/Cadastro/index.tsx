@@ -59,9 +59,7 @@ export const Cadastro = () => {
       if (response.aviso) {
         setTextErrorData(response.msg);
         setLoaderState(false);
-        setTimeout(() => {
-          navigate("/configuracao");
-        }, 2000);
+
       } else {
         setCategoriaState(response);
         setLoaderState(false);
@@ -227,7 +225,7 @@ export const Cadastro = () => {
               </S.FormCad>
             </>
           ) : (
-           <ErrorData textError={textErrorData} />
+           <ErrorData textError={textErrorData} textLinkExit="TENTAR NOVAMENTE!"/>
           )}
         </>
       )}

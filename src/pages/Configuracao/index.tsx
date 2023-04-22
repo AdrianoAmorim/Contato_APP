@@ -48,7 +48,7 @@ export const Configuracao = () => {
   //CHAMA A FUNCAO DE CADASTRO DE CATEGORIA DA API
   const cadCategoria = async (categoria: string) => {
 
-    if(categoria.trim() ===" "){
+    if(categoria.trim()){
       try {
         const response = await saveCategoria(categoria);
         if (response.id > 0) {

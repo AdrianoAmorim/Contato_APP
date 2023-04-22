@@ -4,6 +4,7 @@ import { Cadastro } from "../pages/Cadastro";
 import { Visualizar } from "../pages/Visualizar";
 import { Home } from "../pages/Home";
 import { Configuracao } from "../pages/Configuracao";
+import { ErrorData } from "../pages/ErrorData";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +13,8 @@ export const router = createBrowserRouter([
     children:[
       {
         path: "/",
-        element: <Home/>
+        element: <Home/>,
+    
       },
       {
         path: "/cadastrar",

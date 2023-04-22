@@ -66,7 +66,7 @@ export const BoxCadCategoria = styled.div`
 
 export const BoxInpCadCategoria = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   width: 100%;
   align-items: center;
 `;
