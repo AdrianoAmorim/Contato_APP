@@ -52,7 +52,9 @@ export const Configuracao = () => {
       try {
         const response = await saveCategoria(categoria);
         if (response.id > 0) {
+          setCategoria("");
           customizeModal("AVISO", "Contato cadastrado com sucesso!",false);
+
         }
       } catch (error) {
         console.log(error);

@@ -84,4 +84,8 @@ export const BtnCadastrar = styled.button`
   border: none;
   background-color: var(--bg-button);
   cursor: pointer;
+  transition: all .3s ease-in-out;
+  &:hover, &:active{
+    background-color: #f47a00;
+  }
 `;

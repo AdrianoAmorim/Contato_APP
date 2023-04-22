@@ -10,4 +10,9 @@ export const Button = styled.button<ButtonProps>`
     background-color: ${props => props.bgcolor ? `var(${props.bgcolor})` : 'var(--bg-button)' };
     cursor: pointer;
     width: 40px;
+    transition: all .3s ease-in-out;
+
+    &:hover,&:active{
+        background-color: #f47a00
+    }
 `;

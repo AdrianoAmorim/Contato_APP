@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import TitilliumWeb from './assets/fonts/TitilliumWeb-SemiBold.ttf'
+import  {DefaultTheme}  from './themes/DefaultTheme';
+
 
 export const GlobalStyles = createGlobalStyle`
 @font-face{
@@ -11,15 +13,15 @@ export const GlobalStyles = createGlobalStyle`
     font-family: "TitilliumWeb";
 }
 :root{
-    --background: #ebf5f4;
-    --bg-header: #408080;
-    --bg-button: #ff9b37;
-    --bg-danger: #ff2828;
-    --text-button:#fcfcfc;
-    --bg-card-contact:#fcfcfca9;
-    --text-title: #fff;
-    --text-primary: #282828;
-    --border-input:#408080;
+    --background: ${DefaultTheme.colors.background};
+    --bg-header: ${DefaultTheme.colors.bgHeader};
+    --bg-button: ${DefaultTheme.colors.bgButton};
+    --bg-danger: ${DefaultTheme.colors.bgDanger};
+    --text-button:${DefaultTheme.colors.textButton};
+    --bg-card-contact:${DefaultTheme.colors.bgCardContact};
+    --text-title: ${DefaultTheme.colors.textTitle};
+    --text-primary: ${DefaultTheme.colors.textPrimary};
+    --border-input:${DefaultTheme.colors.borderInput};
 }
 
 
@@ -30,9 +32,7 @@ body{
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    
-    
+    box-sizing: border-box; 
 }
 //ANIMACOES GLOBAIS
 .openModalAnimation{
