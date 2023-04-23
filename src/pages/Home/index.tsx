@@ -42,6 +42,13 @@ export const Home = () => {
     getDataContacts();
   }, []);
 
+
+  //funcao para sair da tela de Dados Nao encontrado
+  const exitErrorData = ()=>{
+    getDataContacts();
+    setNomeFind("");
+    
+  }
   //FUNCAO DO OK DO MODAL
   const confirmModal = () => {
     setOpenModalState(false);
@@ -201,6 +208,7 @@ export const Home = () => {
             <ErrorData
               textError={textErrorData}
               textLinkExit="CONSULTAR NOVAMENTE"
+              exitError={exitErrorData}
             />
           )}
         </>

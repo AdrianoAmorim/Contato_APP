@@ -51,6 +51,10 @@ export const Cadastro = () => {
     getCategory();
   }, []);
 
+  //SAIR DA TELA DE ERRO DE DADOS VAZIO
+  const exitErrorData = ()=>{
+    navigate("/");
+  };
   //PEGA TODAS AS CATEGORIAS CADASTRADAS
   const getCategory = async () => {
     setLoaderState(true);
@@ -225,7 +229,7 @@ export const Cadastro = () => {
               </S.FormCad>
             </>
           ) : (
-           <ErrorData textError={textErrorData} textLinkExit="TENTAR NOVAMENTE!"/>
+           <ErrorData textError={textErrorData} textLinkExit="Retorne para a tela Principal" exitError={exitErrorData}/>
           )}
         </>
       )}

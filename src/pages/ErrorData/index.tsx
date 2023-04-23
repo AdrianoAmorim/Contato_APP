@@ -1,21 +1,30 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import imgError from "../../assets/img/img_dataError.png";
 import * as S from "./styled";
+import { useContext, useEffect } from "react";
+import { HeaderContext } from "../../contexts/HeaderContext";
 
 type ErrorDataType = {
   textError: string;
   textLinkExit: string;
+  exitError: ()=> void;
 };
 
-export const ErrorData = ({
-  textError,
-  textLinkExit
-}: ErrorDataType) => {
- const {id} = useParams();
-
+export const ErrorData = ({textError,textLinkExit,exitError}: ErrorDataType) => {
+  const {setHeaderState} = useContext(HeaderContext);
+ //CONFIGURA OS BOTOES DO HEADER
+ const configHeader = {
+  btnConfig: false,
+  btnSave: false,
+  btnDelete: false,
+  btnBack: true,
+  btnEditar: false,
+};
+useEffect(()=>{
+setHeaderState(configHeader);
+},[])
   const handleExitErrorData = () => {
-    console.log("oi")
-    location.reload();
+    console.log("oi");
   };
 
   return (
@@ -24,10 +33,10 @@ export const ErrorData = ({
         <img src={imgError} alt="Imagem de Error sem dados" />
       </S.BoxImg>
       <S.BoxText>
-        <span>{textError}  {id}</span>
+        <span>{textError}</span>
       </S.BoxText>
       <S.BoxOptionExit>
-        <S.LinkExit onClick={handleExitErrorData}>{textLinkExit}</S.LinkExit>
+        <S.LinkExit onClick={exitError}>{textLinkExit}</S.LinkExit>
       </S.BoxOptionExit>
     </S.BoxContainer>
   );
