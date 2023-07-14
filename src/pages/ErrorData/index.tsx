@@ -23,9 +23,6 @@ export const ErrorData = ({textError,textLinkExit,exitError}: ErrorDataType) => 
 useEffect(()=>{
 setHeaderState(configHeader);
 },[])
-  const handleExitErrorData = () => {
-    console.log("oi");
-  };
 
   return (
     <S.BoxContainer>

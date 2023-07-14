@@ -19,7 +19,7 @@ export const getAllContacts = async (): Promise<ContactHomeType[] |any> => {
 
 
 }
-
+//RETORNA OS CONTATOS REQUERIDO PELA BUSCA DA HOME
 export const getContactsFind = async (nome:string): Promise<ContactHomeType[] |any>=>{
     try {
         const response = await axios.get<ContactHomeType[]>(`${url_api}/contatos/find`,{
